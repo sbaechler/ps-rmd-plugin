@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.stellanera.UniversalImages" ExtensionBundleVersion="1.0.0"
+  ExtensionBundleName="Universal Images" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ExtensionList>
+    <Extension Id="com.stellanera.UniversalImages" Version="0.1.0" />
+  </ExtensionList>
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="PHXS" Version="[16.0,16.9]" />
+      <Host Name="PHSP" Version="[16.0,16.9]" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="6.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList>
+    <Extension Id="com.stellanera.UniversalImages">
+      <DispatchInfo >
+        <Resources>
+          <MainPath>./root/index.html</MainPath>
+          <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>Universal Images</Menu>
+          <Geometry>
+            <Size>
+              <Height>480</Height>
+              <Width>720</Width>
+              <!--<MinSize>
+                <Height>550</Height>
+                <Width>400</Width>
+              </MinSize>
+              <MaxSize>
+                <Height>550</Height>
+                <Width>400</Width>
+              </MaxSize>-->
+            </Size>
+          </Geometry>
+          <Icons>
+            <Icon Type="Normal">./icons/iconNormal.png</Icon>
+            <Icon Type="RollOver">./icons/iconRollover.png</Icon>
+            <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
+            <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
+            <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+          </Icons>		
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+</ExtensionManifest>

@@ -1,0 +1,11 @@
+node_modules
+bower_components
+bin
+build
+dist
+docs
+bundle
+css/app.css
+.yo-rc.json
+.DS_Store
+.idea

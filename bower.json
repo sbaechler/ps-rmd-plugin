@@ -1,0 +1,17 @@
+{
+  "name": "Universal Images",
+  "version": "0.1.0",
+  "description": "Mark crop regions to make your images responsive.",
+  "main": "root/index.html",
+  "authors": [
+    "Simon Bächler"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
