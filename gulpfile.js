@@ -8,9 +8,8 @@ var gulp = require('gulp-help')(require('gulp')),
   path = require('path'),
   fs = require('fs-extra'),
   wiredep = require('wiredep').stream,
-  webpack = require('webpack'),
-  webpackConfig = require('./webpack.config'),
   pkg = require('./package.json'),
+  concat = require('gulp-concat'),
   runSequence = require('run-sequence');
 
 // Files that will be run against JSHint
@@ -21,7 +20,7 @@ var allSrcFiles = [
   ],
   // The CSS files what will be injected into the index
   cssFiles = 'css/**/*.css',
-  // Files that will be bundled with webpack
+  // Files that will be bundled
   jsFiles = 'app/**/*.js',
   // Files that will be built into CSS
   scssFiles = './sass/**/*.scss',
@@ -35,9 +34,9 @@ var allSrcFiles = [
     'bower_components/**/*'
   ],
   // The selfSigned certificate used to compile the extension
-  certPath = path.join('./bin', 'Universal ImagesCert.p12'),
+  certPath = path.join('./bin', 'testCert.p12'),
   // The path and name of the compiled ZXP file
-  zxpPath = path.join('./build', 'Universal Images.zxp'),
+  zxpPath = path.join('./build', 'test.zxp'),
   // The path to the zxpSignCmd binary
   binPath = path.join('./bin', 'ZXPSignCmd');
 
@@ -66,38 +65,34 @@ gulp.task('sass', 'Build sass files', function () {
     .pipe(gulp.dest('./css'));
 });
 
-gulp.task('webpack', 'Compile your webpack bundle', function (callback) {
-  webpack(webpackConfig, function(err, stats) {
-          if(err) throw new gutil.PluginError("webpack", err);
-          gutil.log("[webpack]", stats.toString({
-
-          }));
-          callback();
-      });
+gulp.task('scripts', function() {
+    return gulp.src(jsFiles)
+      .pipe(concat('bundle.js'))
+      .pipe(gulp.dest('./bundle'));
 });
 
 gulp.task('watch', 'Build based on file changes', function () {
-  gulp.watch(jsFiles, ['webpack']);
+  gulp.watch(jsFiles, ['scripts']);
   gulp.watch(scssFiles, ['sass']);
   var dependencyFiles = ['bower.json', 'package.json', 'root/**/*.js'];
-//  dependencyFiles.forEach(function(files) {
-//      gulp.watch(files, ['wire']);
-//  });
+  dependencyFiles.forEach(function(files) {
+      gulp.watch(files, ['wire']);
+  });
 });
 
 gulp.task('cert', 'Create a signing cert for your extension', shell.task([
     InsertSpaces(binPath,
       '-selfSignedCert',
-      'CH',
+      'US',
       'NA',
       'company',
-      'UniversalImages',
+      'test',
       '01189998819991197253',
-      path.join('./bin', 'Universal ImagesCert.p12'))
+      path.join('./bin', 'testCert.p12'))
 ]));
 
 gulp.task('build', 'Compile the bundled ZXP', function (cb) {
-  runSequence('build:clean', 'sass', 'webpack', 'wire', 'build:dist', 'build:pkgDeps', 'build:compile', cb);
+  runSequence('build:clean', 'sass', 'scripts', 'wire', 'build:dist', 'build:pkgDeps', 'build:compile', cb);
 });
 
 gulp.task('build:clean', false, function () {

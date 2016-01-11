@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
   <meta charset="utf-8">
   <!-- bower:css -->
   <!-- endbower -->
   <!-- inject:css -->
+  <link rel="stylesheet" href="../css/app.css">
   <link rel="stylesheet" href="../css/boilerplate.css">
   <link rel="stylesheet" href="../css/topcoat-desktop-dark.min.css">
-  <link rel="stylesheet" href="../css/app.css">
   <!-- endinject -->
   <title></title>
 </head>
-<body class="hostElt">
-  <div id="content">    
+<body class="hostElt" >
+  <div ng-controller="MainController" id="content">
     <h1>Universal Images</h1>
+    {{greeting}}
     <div>
-      <button id="btn_test">CTest</button>
+      <button class="hostButton" id="btn_test">CTest</button>
     </div>
     <div id="message">
       <span></span>
@@ -28,6 +29,7 @@
 <script src="../ext/themeManager.js"></script>
 <!-- endinject -->
 <!-- bower:js -->
+<script src="../bower_components/angular/angular.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
 <script src="../bundle/bundle.js"></script>

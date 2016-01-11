@@ -1,19 +1,13 @@
-(function(){
-  var csInterface = new CSInterface();
-  
-  function sayHello(){
-    alert("hello from ExtendScript");
-  };
+(function() {
 
-    
-  function init() {
-    themeManager.init();
+  var app = angular.module('app', []);
 
-    var button = document.getElementById("btn_test");
-    button.onclick = function () {
-      csInterface.evalScript('sayHello()');
-    };
-  };
+  app.controller('MainController', ['$scope', 'csInterface', function ($scope, csInterface) {
+        csInterface.evalScript('sayHello()');
+        $scope.greeting = 'Hallo';
+      }]);
 
-  init();
-})();
+
+  themeManager.init();
+
+}());
