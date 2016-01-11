@@ -1,6 +1,5 @@
-/*Your styles*/
 
- body {
+body {
     margin: 10px;
 }
 
@@ -11,14 +10,6 @@
     vertical-align:middle;
     width:100%;
 }
-
-
-#btn_test{
-    width: 100%;
-}
-
-
-
 
 /*
 Those classes will be edited at runtime with values specified
@@ -43,9 +34,9 @@ by the settings of the CC application
 .hostButton{
     border:1px solid;
     border-radius:2px;
-    height:20px;
     vertical-align:bottom;
     font-family:inherit;
     color:inherit;
     font-size:inherit;
+    padding: 4px 10px;
 }

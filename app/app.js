@@ -2,12 +2,12 @@
 
   var app = angular.module('app', []);
 
-  app.controller('MainController', ['$scope', 'csInterface', function ($scope, csInterface) {
-        csInterface.evalScript('sayHello()');
-        $scope.greeting = 'Hallo';
-      }]);
+  app.controller('MainController', ['$scope', 'csInterface', 'themeManager',
+    function ($scope, csInterface, themeManager) {
+      themeManager.init();
 
+      // csInterface.evalScript('sayHello()');
 
-  themeManager.init();
-
+      $scope.greeting = 'Hallo';
+    }]);
 }());
