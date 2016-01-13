@@ -1,42 +1,78 @@
+// Topcoat colors
+
+$highlight-color  : #fff;
+$shadow-color     : #000;
+
+/* ---------- call to action colors ---------- */
+$text-color--cta: #fff;
+$background-color--cta: #288edf;
+
+/* ---------- notification / error color ---------- */
+$notification-color: #ec514e;
+
+/* ---------- dark colors ---------- */
+$text-color       : #c6c8c8;
+$background-color : #595b5b;
+$background--body : #4B4D4E;
+
+/* ---------- light colors ---------- */
+$text-color      : #454545;
+$background-color: #e5e9e8;
+$background--body: #DFE2E2;
+
+
 
 body {
-    margin: 10px;
+  margin: 10px;
 }
 
-
 #content {
-    margin-right:auto;
-    margin-left:auto;
-    vertical-align:middle;
-    width:100%;
+  margin-right: auto;
+  margin-left: auto;
+  vertical-align: middle;
+  width: 100%;
 }
 
 /*
 Those classes will be edited at runtime with values specified
 by the settings of the CC application
 */
-.hostFontColor{}
-.hostFontFamily{}
-.hostFontSize{}
+.hostFontColor {
+}
+
+.hostFontFamily {
+}
+
+.hostFontSize {
+}
 
 /*font family, color and size*/
-.hostFont{}
-/*background color*/
-.hostBgd{}
-/*lighter background color*/
-.hostBgdLight{}
-/*darker background color*/
-.hostBgdDark{}
-/*background color and font*/
-.hostElt{}
-
-
-.hostButton{
-    border:1px solid;
-    border-radius:2px;
-    vertical-align:bottom;
-    font-family:inherit;
-    color:inherit;
-    font-size:inherit;
-    padding: 4px 10px;
+.hostFont {
 }
+
+/*background color*/
+.hostBgd {
+}
+
+/*lighter background color*/
+.hostBgdLight {
+}
+
+/*darker background color*/
+.hostBgdDark {
+}
+
+/*background color and font*/
+.hostElt {
+}
+
+.hostButton {
+  border: 1px solid;
+  border-radius: 2px;
+  vertical-align: bottom;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  padding: 4px 10px;
+}
+

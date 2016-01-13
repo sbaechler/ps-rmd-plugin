@@ -74,7 +74,7 @@ gulp.task('scripts', function() {
 gulp.task('watch', 'Build based on file changes', function () {
   gulp.watch(jsFiles, ['scripts']);
   gulp.watch(scssFiles, ['sass']);
-  var dependencyFiles = ['bower.json', 'package.json', 'root/**/*.js'];
+  var dependencyFiles = ['bower.json', 'package.json'];
   dependencyFiles.forEach(function(files) {
       gulp.watch(files, ['wire']);
   });
@@ -131,3 +131,6 @@ function InsertSpaces () {
   });
   return builtString;
 };
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['watch', 'scripts', 'sass']);

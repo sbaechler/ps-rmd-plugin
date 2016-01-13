@@ -14,11 +14,26 @@
   <div ng-controller="MainController" id="content">
     <h1>Universal Images</h1>
     {{greeting}}
-    <div>
-      <button class="hostButton" id="btn_test">CTest</button>
-    </div>
-    <div id="message">
-      <span></span>
+
+    <div id="rmd-container" xmp-extract>
+      Target name: {{targetName}} ({{rmd.targetName}})<br>
+      Image Dimensions: {{xDimension}}x{{yDimension}}<br>
+
+      <fieldset>
+        <legend>Allowed Derivates</legend>
+        <label class="topcoat-checkbox">
+          <input type="checkbox" ng-checked="allowedDerivates_Crop">
+          <div class="topcoat-checkbox__checkmark"></div>
+          Crop
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>PivotPoint</legend>
+        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint['stArea:x']">
+        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint['stArea:y']">
+      </fieldset>
+      Pivot Point: {{rmd.PivotPoint['stArea:x']}}, {{rmd.PivotPoint['stArea:y']}}
     </div>
   </div>
     
@@ -26,9 +41,11 @@
 <!-- ext:js -->
 <script src="../ext/CSInterface.js"></script>
 <script src="../ext/themeManager.js"></script>
+<script src="../ext/xmp_bridge.js"></script>
 <!-- endinject -->
 <!-- bower:js -->
 <script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/ng-lodash/build/ng-lodash.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
 <script src="../bundle/bundle.js"></script>
