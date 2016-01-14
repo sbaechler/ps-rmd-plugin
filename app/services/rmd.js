@@ -1,5 +1,5 @@
 angular.module('app')
-.factory('RMD', ['XMPBridge', 'xmlNamespaces', 'lodash', 'x2js', 'rmdDefault',
+.factory('rmdBridge', ['XMPBridge', 'xmlNamespaces', 'lodash', 'x2js', 'rmdDefault',
   function(XMPBridge, Namespaces, _, x2js, rmdDefault) {
 
   // TODO: store metadata for different targets (=files)
@@ -7,7 +7,7 @@ angular.module('app')
   var ns = Namespaces.rmd;
 
   var RMD = function() {
-    this.xmp = rmdDefault;
+    this.xmp = _.cloneDeep(rmdDefault);
 
     this.getXMP = function() {
       var self = this;
@@ -18,7 +18,7 @@ angular.module('app')
           });
           XMPBridge.getRawXmp(function(xmp) {
             var new_xmp = x2js.xml_str2json(xmp);
-            _.defaultsDeep(self.xmp, new_xmp);
+            _.extend(self.xmp, new_xmp);
           });
         } else {
           throw new Error('Failed to load XMP Bridge.');

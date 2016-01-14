@@ -18,6 +18,7 @@
     "angular": "~1.4.8",
     "topcoat": "~0.8.0",
     "ng-lodash": "~0.3.0",
-    "angular-xml": "~2.2.1"
+    "angular-xml": "~2.2.1",
+    "topcoat-icons": "~0.2.0"
   }
 }

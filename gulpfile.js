@@ -25,6 +25,7 @@ var allSrcFiles = [
   jsFiles = 'app/**/*.js',
   // Files that will be built into CSS
   scssFiles = './sass/**/*.scss',
+  templateFiles = 'templates/**/*.html',
   // Files that will be compiled into the ZXP
   buildFiles = [
     'bundle/bundle.js',
@@ -75,7 +76,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('watch', 'Build based on file changes', function () {
-  gulp.watch(jsFiles, ['scripts']);
+  gulp.watch([jsFiles], ['scripts']);
   gulp.watch(scssFiles, ['sass']);
   var dependencyFiles = ['bower.json', 'package.json'];
   dependencyFiles.forEach(function(files) {

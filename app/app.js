@@ -19,10 +19,8 @@
       arrayAccessFormPaths: ['xmpmeta.RDF.Description.RecommendedFrames.Bag.li']
     };
   })
-  .controller('MainController', ['$scope', 'csInterface', 'RMD',
-    function ($scope, csInterface, RMD) {
-
-      // csInterface.evalScript('sayHello()');
+  .controller('MainController', ['$scope', 'csInterface', 'rmdBridge', 'rmdDefault', 'lodash',
+    function ($scope, csInterface, RMD, rmdDefault, _) {
 
       $scope.greeting = 'Hallo';
       $scope.rmd = RMD.xmp.xmpmeta.RDF.Description;
@@ -30,6 +28,16 @@
       // TODO: Remove debugging exposures.
       global._scope = $scope;
       global.RMD = RMD;
+
+      $scope.addCropArea = function(name) {
+        if(name === undefined) {
+          $scope.rmd.RecommendedFrames.Bag.li.push(_.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea));
+        } else if(name === 'default') {
+          $scope.rmd.CropArea = _.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea);
+        } else if(name === 'safe') {
+          $scope.rmd.SafeArea = _.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea);
+        }
+      }
 
     }
   ]);

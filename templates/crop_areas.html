@@ -1,0 +1,19 @@
+ <fieldset>
+  <legend>Crop Areas</legend>
+  <crop-area title="Crop Area" ng-if="rmd.CropArea" struct="rmd.CropArea"></crop-area>
+  <crop-area title="Safe Area" ng-if="rmd.SafeArea" struct="rmd.SafeArea"></crop-area>
+  <hr />
+  <div ng-repeat="area in rmd.RecommendedFrames.Bag.li">
+    <crop-area title="Custom Area" struct="area"></crop-area>
+  </div>
+  <br />
+  <button class="topcoat-button--cta" ng-click="addCropArea('default')" ng-hide="rmd.CropArea">
+    <span class='icomatic icon'>plus</span> <small>Add default Crop Area</small>
+  </button>
+  <button class="topcoat-button" ng-click="addCropArea('safe')" ng-hide="rmd.SafeArea">
+    <span class='icomatic icon'>plus</span> <small>Add Safe Area</small>
+  </button>
+  <button class="topcoat-button" ng-click="addCropArea()">
+    <span class='icomatic icon'>plus</span> <small>Add new custom area</small>
+  </button>
+</fieldset>
