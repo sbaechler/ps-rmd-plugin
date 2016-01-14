@@ -3,6 +3,7 @@ var gulp = require('gulp-help')(require('gulp')),
   gutil = require('gulp-util'),
   inject = require('gulp-inject'),
   shell = require('gulp-shell'),
+  sourcemaps = require('gulp-sourcemaps'),
   sass = require('gulp-sass'),
   del = require('del'),
   path = require('path'),
@@ -67,7 +68,9 @@ gulp.task('sass', 'Build sass files', function () {
 
 gulp.task('scripts', function() {
     return gulp.src(jsFiles)
+      .pipe(sourcemaps.init())
       .pipe(concat('bundle.js'))
+      .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./bundle'));
 });
 

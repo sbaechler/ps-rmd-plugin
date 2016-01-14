@@ -17,6 +17,7 @@
   "dependencies": {
     "angular": "~1.4.8",
     "topcoat": "~0.8.0",
-    "ng-lodash": "~0.3.0"
+    "ng-lodash": "~0.3.0",
+    "angular-xml": "~2.2.1"
   }
 }

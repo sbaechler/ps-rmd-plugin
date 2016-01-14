@@ -176,6 +176,10 @@ var XMPBridge = (function(exports) {
 	exports.commit = function() {
 		callExtendScript('$.XMP.commit');	
 	};
+
+	exports.getRawXmp = function(callback) {
+		callExtendScript('$.XMP.getRawXMP', callback);
+	};
 	
 	return exports;
 	

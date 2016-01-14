@@ -1,7 +1,9 @@
 {
   "name": "Universalimages",
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-sourcemaps": "^1.6.0"
+  },
   "devDependencies": {
     "del": "^2.0.2",
     "fs-extra": "^0.26.2",

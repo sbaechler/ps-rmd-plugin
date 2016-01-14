@@ -16,24 +16,36 @@
     {{greeting}}
 
     <div id="rmd-container" xmp-extract>
-      Target name: {{targetName}} ({{rmd.targetName}})<br>
+      Target name: {{targetName}}<br>
       Image Dimensions: {{xDimension}}x{{yDimension}}<br>
 
       <fieldset>
         <legend>Allowed Derivates</legend>
-        <label class="topcoat-checkbox">
-          <input type="checkbox" ng-checked="allowedDerivates_Crop">
-          <div class="topcoat-checkbox__checkmark"></div>
-          Crop
-        </label>
+        <fieldset>
+          <legend>Crop</legend>
+          <label class="topcoat-checkbox">
+            <input type="radio" name="allowedDerivates" ng-model="rmd.AllowedDerivates.Crop.__text" value="none">
+            <div class="topcoat-radio-button__checkmark"></div>
+            None
+          </label>
+          <label class="topcoat-checkbox">
+            <input type="radio" name="allowedDerivates" ng-model="rmd.AllowedDerivates.Crop.__text" value="visibilityOnly">
+            <div class="topcoat-radio-button__checkmark"></div>
+            Visibility Only
+          </label>
+          <label class="topcoat-checkbox">
+            <input type="radio" name="allowedDerivates" checked ng-model="rmd.AllowedDerivates.Crop.__text" value="all">
+            <div class="topcoat-radio-button__checkmark"></div>
+            All
+          </label>
+        </fieldset>
       </fieldset>
 
       <fieldset>
         <legend>PivotPoint</legend>
-        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint['stArea:x']">
-        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint['stArea:y']">
+        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.x.__text">
+        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.y.__text">
       </fieldset>
-      Pivot Point: {{rmd.PivotPoint['stArea:x']}}, {{rmd.PivotPoint['stArea:y']}}
     </div>
   </div>
     
@@ -46,6 +58,8 @@
 <!-- bower:js -->
 <script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/ng-lodash/build/ng-lodash.js"></script>
+<script src="../bower_components/x2js/xml2json.min.js"></script>
+<script src="../bower_components/angular-xml/angular-xml.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
 <script src="../bundle/bundle.js"></script>

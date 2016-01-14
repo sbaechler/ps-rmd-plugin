@@ -128,6 +128,7 @@ $.delegates = (function (exports) {
       // if no target could be retrieved, we don't expose the API.
       if (!target) return;
 
+      // accessor.getXmpPacket() returns the raw XML.
       var xmp = new XMPMeta(accessor.getXmpPacket(target));
 
       return {
@@ -150,10 +151,23 @@ $.delegates = (function (exports) {
         commit: function () {
           var packet = xmp.serialize(XMPConst.SERIALIZE_USE_COMPACT_FORMAT);
           accessor.setXmpPacket(target, packet);
+        },
+
+        getRawXMP: function() {
+          return accessor.getXmpPacket(target);
+        },
+
+        setRawXMP: function(serialized_xmp) {
+          accessor.setXmpPacket(target, serialized_xmp);
+          xmp = new XMPMeta(serialized_xmp);
         }
       };
     };
+
+
   }
+
+
 
   /**
    * As opposed to other applications the InDesign object model does not expose the
@@ -378,6 +392,14 @@ $.XMP = (function (exports) {
    */
   exports.commit = function () {
     DELEGATE_API.commit();
+  };
+
+  exports.getRawXMP = function () {
+    return DELEGATE_API.getRawXMP();
+  };
+
+  exports.setRawXMP = function(serializedXmp) {
+    return DELEGATE_API.setRawXMP(serializedXmp)
   };
 
   return exports;
