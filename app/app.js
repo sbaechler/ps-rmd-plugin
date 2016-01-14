@@ -37,7 +37,16 @@
         } else if(name === 'safe') {
           $scope.rmd.SafeArea = _.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea);
         }
-      }
+      };
+      $scope.removeCropArea = function(index) {
+        if(index === 'default') {
+          delete $scope.rmd.CropArea;
+        } else if(index === 'safe') {
+          delete $scope.rmd.SafeArea;
+        } else {
+          $scope.rmd.RecommendedFrames.Bag.li.splice(index, 1);
+        }
+      };
 
     }
   ]);
