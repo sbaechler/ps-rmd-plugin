@@ -1,13 +1,32 @@
 <div class="crop-area">
-  <button class="topcoat-icon-button--quiet" ng-click="activateFn(index)">
-    <span class='icomatic icon' ng-show="isActive(index)">roundedrectangle</span>
-    <span class='icomatic icon' ng-hide="isActive(index)">roundedrectangleoutline</span>
-    {{title}}
-  </button>
-  <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.x.__text" smart-float />
-  <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.y.__text" smart-float />
-  <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.w.__text" smart-float />
-  <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.h.__text" smart-float />
+  <div class="crop-area-row">
+    <button class="topcoat-icon-button--quiet" ng-click="activateFn(index)">
+      <span class='icomatic icon' ng-show="isActive(index)">roundedrectangle</span>
+      <span class='icomatic icon' ng-hide="isActive(index)">roundedrectangleoutline</span>
+      {{title}}
+    </button>
 
-  <button class="topcoat-icon-button--quiet" ng-click="removeFn(index)"><span class='icomatic icon'>delete</span></button>
+    <button class="topcoat-icon-button--quiet" ng-click="removeFn(index)"><span class='icomatic icon'>delete</span></button>
+  </div>
+  <div class="crop-area-row">
+    <label class="small">x: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.x.__text" smart-float disabled /></label>
+    <label class="small">y: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.y.__text" smart-float disabled /></label>
+    <label class="small">w: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.w.__text" smart-float disabled /></label>
+    <label class="small">h: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.h.__text" smart-float disabled /></label>
+  </div>
+  <div class="crop-area-row">
+    <label ng-class="{inactive: !isRecommended()}"  class="small stack">Min. Aspect<br>
+      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.MinAspectRatio.__text" smart-float />
+    </label>
+    <label ng-class="{inactive: !isRecommended()}"  class="small stack">Max. Aspect<br>
+      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.MaxAspectRatio.__text" smart-float />
+    </label>
+    <label ng-class="{inactive: isSafeType()}"  class="small stack">Min. Width<br>
+      <input ng-disabled="isSafeType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.MinWidth.__text" />
+    </label>
+    <label ng-class="{inactive: isCropType()}" class="small stack">Max. Width<br>
+      <input ng-disabled="isCropType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.MaxWidth.__text" />
+    </label>
+  </div>
+
 </div>

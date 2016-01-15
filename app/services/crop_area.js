@@ -36,6 +36,14 @@ angular.module('app')
   return {
     restrict: 'E',
     templateUrl: '../templates/crop_area.html',
+    controller: ['$scope', function($scope){
+      $scope.isRecommended = function(){
+        // check if the index is a number (stored as a string)
+        return !isNaN(parseInt($scope.index));
+      };
+      $scope.isCropType = function() { return $scope.index === 'default';};
+      $scope.isSafeType = function() { return $scope.index === 'safe';};
+    }],
     scope: {
       title: '@',
       struct: '=struct',

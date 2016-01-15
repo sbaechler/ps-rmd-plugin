@@ -20,8 +20,8 @@
     };
   })
   .controller('MainController', ['$scope', 'csInterface', 'rmdBridge',
-    'rmdDefault', 'lodash', 'psEvent',
-    function ($scope, csInterface, RMD, rmdDefault, _, psEvent) {
+    'rmdDefault', 'lodash', 'psEvent', 'rmdFrameStruct',
+    function ($scope, csInterface, RMD, rmdDefault, _, psEvent, rmdFrameStruct) {
 
       var activeArea = null;
       var gExtensionID = csInterface.getExtensionID();
@@ -162,12 +162,20 @@
        * @param name - the name of the area. One of 'default', 'safe' or a number.
        */
       $scope.addCropArea = function(name) {
+        var struct;
         if(name === undefined) {
-          $scope.rmd.RecommendedFrames.Bag.li.push(_.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea));
-        } else if(name === 'default') {
-          $scope.rmd.CropArea = _.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea);
-        } else if(name === 'safe') {
-          $scope.rmd.SafeArea = _.cloneDeep(rmdDefault.xmpmeta.RDF.Description.SafeArea);
+          $scope.rmd.RecommendedFrames.Bag.li.push(_.cloneDeep(rmdFrameStruct));
+        } else  {
+          struct = _.cloneDeep(rmdFrameStruct);
+          delete struct.MinAspectRatio;
+          delete struct.MaxAspectRatio;
+          if(name === 'default') {
+            delete struct.MaxWidth;
+            $scope.rmd.CropArea = struct;
+          } else if(name === 'safe') {
+            delete struct.MinWidth;
+            $scope.rmd.SafeArea = struct;
+          }
         }
       };
       /**

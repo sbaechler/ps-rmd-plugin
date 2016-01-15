@@ -11,14 +11,14 @@ $background-color--cta: #288edf;
 $notification-color: #ec514e;
 
 /* ---------- dark colors ---------- */
-$text-color       : #c6c8c8;
-$background-color : #595b5b;
-$background--body : #4B4D4E;
+$text-color-dark       : #c6c8c8;
+$background-color-dark : #595b5b;
+$background--body-dark : #4B4D4E;
 
 /* ---------- light colors ---------- */
-$text-color      : #454545;
-$background-color: #e5e9e8;
-$background--body: #DFE2E2;
+$text-color-light      : #454545;
+$background-color-light: #e5e9e8;
+$background--body-light: #DFE2E2;
 
 
 
@@ -78,4 +78,29 @@ by the settings of the CC application
 
 .topcoat-text-input--small {
   width: 44px;
+}
+
+label {
+  color: $text-color-dark;
+  text-shadow: 0 -1px rgba(0,0,0,.69);
+  display: flex;
+  flex: 1 1;
+  align-items: center;
+
+  &.stack {
+    flex-flow: column;
+  }
+  &.inactive {
+    color: $text-color-light;
+    text-shadow: none;
+  }
+}
+
+.crop-area-row {
+  display: flex;
+
+  margin-bottom: 6px;
+  > .small {
+    font-size: 0.75rem;
+  }
 }
