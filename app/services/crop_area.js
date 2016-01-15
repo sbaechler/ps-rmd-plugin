@@ -2,9 +2,7 @@ angular.module('app')
 .directive('cropAreas', function(){
   return {
     restrict: 'E',
-    templateUrl: '../templates/crop_areas.html',
-    link: function(scope, element, attr) {
-    }
+    templateUrl: '../templates/crop_areas.html'
   };
 })
 
@@ -42,10 +40,9 @@ angular.module('app')
       title: '@',
       struct: '=struct',
       removeFn: '=',
-      index: '@'
-    },
-    link: function(scope, element, attr) {
-
+      activateFn: '=',
+      index: '@',
+      isActive: '='
     }
   };
 }])

@@ -8,7 +8,7 @@ angular.module('app')
   })
   .constant('xmlNamespaces', {
     xmp: 'http://ns.adobe.com/xap/1.0/',
-    rmd: 'http://universalimages.github.io/rmd/',
+    rmd: 'http://universalimages.github.io/rmd/0.1/',
     stDim: 'http://ns.adobe.com/xap/1.0/sType/Dimensions#',
     stArea: 'http://ns.adobe.com/xmp/sType/Area#',
     exif: 'http://ns.adobe.com/exif/1.0/',

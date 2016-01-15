@@ -1,10 +1,13 @@
  <fieldset>
   <legend>Crop Areas</legend>
-  <crop-area title="Crop Area" ng-if="rmd.CropArea" struct="rmd.CropArea" remove-fn="removeCropArea" index="default"></crop-area>
-  <crop-area title="Safe Area" ng-if="rmd.SafeArea" struct="rmd.SafeArea" remove-fn="removeCropArea" index="safe"></crop-area>
+  <crop-area title="Crop Area" ng-if="rmd.CropArea" struct="rmd.CropArea" is-active="isAreaActive"
+             remove-fn="removeCropArea" index="default" activate-fn="setActiveArea"></crop-area>
+  <crop-area title="Safe Area" ng-if="rmd.SafeArea" struct="rmd.SafeArea" is-active="isAreaActive"
+             remove-fn="removeCropArea" index="safe" activate-fn="setActiveArea"></crop-area>
   <hr />
   <div ng-repeat="area in rmd.RecommendedFrames.Bag.li">
-    <crop-area title="Custom Area" struct="area" remove-fn="removeCropArea" index="{{$index}}"></crop-area>
+    <crop-area title="Custom Area" struct="area" is-active="isAreaActive"
+               remove-fn="removeCropArea" index="{{$index}}" activate-fn="setActiveArea"></crop-area>
   </div>
   <br />
   <button class="topcoat-button--cta" ng-click="addCropArea('default')" ng-hide="rmd.CropArea">
