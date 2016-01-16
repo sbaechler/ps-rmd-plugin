@@ -47,8 +47,23 @@
 
       <fieldset>
         <legend>PivotPoint</legend>
+        <button ng-class="{active: isAreaActive('pivot')}" class="topcoat-icon-button--quiet" ng-click="setActiveArea('pivot')">
+          <span class='icomatic icon'>pencil</span>
+        </button>
         <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.x.__text">
         <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.y.__text">
+      </fieldset>
+
+      <fieldset>
+        <legend>File</legend>
+        <button class="topcoat-button">
+          <span class='icomatic icon'>save</span>
+          Commit
+        </button>
+        <button class="topcoat-button">
+          <span class='icomatic icon'>refresh</span>
+          Revert
+        </button>
       </fieldset>
     </div>
   </div>

@@ -1,6 +1,8 @@
 (function(global) {
   themeManager.init();
 
+  var SELECTION_SIZE_FOR_POINT = 4;
+
   angular.module('app', ['ngLodash', 'xml'])
     .config(function (lodash, x2jsProvider) {
     x2jsProvider.config = {
@@ -25,6 +27,7 @@
 
       var activeArea = null;
       var gExtensionID = csInterface.getExtensionID();
+      var listenTo = [psEvent.set, psEvent.select];
 
       // Tell Photoshop to not unload us when closed
       function Persistent(inOn) {
@@ -58,7 +61,7 @@
        * @param status - True or false -> on or off.
        */
       var selectListener = function(status) {
-        _register(status, psEvent.set.toString());
+        _register(status, listenTo.toString());
       };
       // deactivate leftover listeners on startup
       selectListener(false);
@@ -81,7 +84,7 @@
        * @param csEvent Photoshop Event.
        */
       var PhotoshopCallbackUnique = function(csEvent) {
-        // console.log('receiving Callback: ', csEvent);
+        console.log('receiving Callback: ', csEvent);
         if (typeof csEvent.data === "string") {
           var eventData = csEvent.data.replace("ver1,{", "{");
           var data = JSON.parse(eventData);
@@ -108,6 +111,8 @@
           return $scope.rmd.CropArea;
         } else if (activeArea === 'safe') {
           return $scope.rmd.SafeArea;
+        } else if (activeArea === 'pivot') {
+          return $scope.rmd.PivotPoint;
         } else {
           return $scope.rmd.RecommendedFrames.Bag.li[activeArea]
         }
@@ -128,8 +133,11 @@
         y = ps_data.top._value + height/2;
         node.x.__text = (x / $scope.documentSize.width).toString();
         node.y.__text = (y / $scope.documentSize.height).toString();
-        node.w.__text = (width / $scope.documentSize.width).toString();
-        node.h.__text = (height / $scope.documentSize.height).toString();
+        if(node.w && node.h) {
+          node.w.__text = (width / $scope.documentSize.width).toString();
+          node.h.__text = (height / $scope.documentSize.height).toString();
+        }
+
         $scope.$apply();
       };
 
@@ -138,11 +146,15 @@
         var node = getNodeForActiveArea();
         x = parseFloat(node.x.__text) * $scope.documentSize.width;
         y = parseFloat(node.y.__text) * $scope.documentSize.height;
-        width = parseFloat(node.w.__text) * $scope.documentSize.width;
-        height = parseFloat(node.h.__text) * $scope.documentSize.height;
+        if(node.w && node.h) {
+          width = parseFloat(node.w.__text) * $scope.documentSize.width;
+          height = parseFloat(node.h.__text) * $scope.documentSize.height;
+        } else {
+          width = SELECTION_SIZE_FOR_POINT;
+          height = SELECTION_SIZE_FOR_POINT;
+        }
         left = parseInt(x - width/2);
         top = parseInt(y - height/2);
-
         coords = {
           left: left,
           top: top,
@@ -220,7 +232,7 @@
           activeArea = area;
           setSelectionFromRmd();
         }
-      }
+      };
 
     }
   ]);
