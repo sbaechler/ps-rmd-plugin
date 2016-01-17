@@ -180,6 +180,10 @@ var XMPBridge = (function(exports) {
 	exports.getRawXmp = function(callback) {
 		callExtendScript('$.XMP.getRawXMP', callback);
 	};
+
+	exports.setRawXmp = function(xmp_string, callback) {
+		callExtendScript('$.XMP.setRawXMP', xmp_string, callback);
+	};
 	
 	return exports;
 	

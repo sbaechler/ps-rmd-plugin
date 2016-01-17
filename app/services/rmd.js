@@ -9,27 +9,50 @@ angular.module('app')
   var RMD = function() {
     this.xmp = _.cloneDeep(rmdDefault);
 
-    this.getXMP = function() {
+    /**
+     * Extracts the XMP metadata from the file and stores it in the xmp property.
+     */
+    this.extractXMP = function() {
       var self = this;
-      XMPBridge.onInit(function(state) {
-        if(!state.isError) {
-          XMPBridge.getTargetName(function(targetName) {
-            self.targetName = targetName;
-          });
-          XMPBridge.getRawXmp(function(xmp) {
-            var new_xmp = x2js.xml_str2json(xmp);
-            _.extend(self.xmp, new_xmp);
-          });
-        } else {
-          throw new Error('Failed to load XMP Bridge.');
-        }
+      return new Promise(function(resolve, reject) {
+        XMPBridge.onInit(function(state) {
+          if(!state.isError) {
+            XMPBridge.getTargetName(function(targetName) {
+              self.targetName = targetName;
+            });
+            XMPBridge.getRawXmp(function(xmp) {
+              var new_xmp = x2js.xml_str2json(xmp);
+              _.extend(self.xmp, new_xmp);
+              resolve(self.xmp);
+            });
+          } else {
+            reject('Failed to load XMP Bridge.');
+          }
+        });
       });
-
     };
+
+    this.getTargetName = function(callback) {
+      XMPBridge.getTargetName(function(targetName){
+        callback(targetName);
+      });
+    };
+
+    /**
+     * Stores the XMP metadata in the file.
+     */
+    this.storeXMP = function() {
+      var xml = x2js.json2xml_str(this.xmp);
+      return new Promise(function(resolve) {
+        XMPBridge.setRawXmp(xml, function(response){resolve(response);});
+      });
+    }
   };
 
   var rmd = new RMD();
-  rmd.getXMP();
+  rmd.extractXMP().catch(function(error) {
+    throw new Error(error);
+  });
 
   return rmd;
 

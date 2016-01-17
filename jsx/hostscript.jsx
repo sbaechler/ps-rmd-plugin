@@ -444,7 +444,9 @@ $.XMP = (function (exports) {
   };
 
   exports.setRawXMP = function(serializedXmp) {
-    return DELEGATE_API.setRawXMP(serializedXmp)
+    DELEGATE_API.setRawXMP(serializedXmp);
+    DELEGATE_API.commit();
+    return 0;
   };
 
   return exports;

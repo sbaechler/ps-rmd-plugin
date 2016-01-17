@@ -52,7 +52,6 @@
         }
         event.extensionId = gExtensionID;
         event.data = inEvents;
-        console.log('dispatching event: ', event);
         csInterface.dispatchEvent(event);
       };
 
@@ -68,6 +67,9 @@
 
       $scope.rmd = RMD.xmp.xmpmeta.RDF.Description;
       $scope.documentSize = {};
+      RMD.getTargetName(function(name){$scope.targetName = name;});
+
+
 
       // TODO: Remove debugging exposures.
       global._scope = $scope;
@@ -78,17 +80,15 @@
         $scope.documentSize = JSON.parse(value);
       });
 
-
       /**
        * Event callback for Photoshop Events. Currently only the 'set' event.
        * @param csEvent Photoshop Event.
        */
       var PhotoshopCallbackUnique = function(csEvent) {
-        console.log('receiving Callback: ', csEvent);
+        // console.log('receiving Callback: ', csEvent);
         if (typeof csEvent.data === "string") {
           var eventData = csEvent.data.replace("ver1,{", "{");
           var data = JSON.parse(eventData);
-          console.log(data);
           if(data.eventData.null._property === 'selection' && data.eventID === psEvent.set
               && data.eventData.to._obj === 'rectangle' && activeArea){
             if(data.eventData.to.top._unit === 'pixelsUnit'){
@@ -232,6 +232,22 @@
           activeArea = area;
           setSelectionFromRmd();
         }
+      };
+
+      $scope.commit = function(){
+        RMD.storeXMP().then(function(response) {
+          if(response == 0) {
+            alert('XMP updated');
+          }
+        });
+      };
+
+      $scope.revert = function() {
+        RMD.extractXMP()
+            .then(function(xmp) {
+              $scope.rmd = xmp.xmpmeta.RDF.Description;
+              $scope.$apply();
+        });
       };
 
     }
