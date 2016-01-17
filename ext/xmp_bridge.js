@@ -108,7 +108,7 @@ var XMPBridge = (function(exports) {
 		// kick off setup phase regardless whether onInit() was called or not.
 		// Note: this is a self-executing function closure.
 		callExtendScript('$.XMP.setup', CS_INTERFACE.getApplicationID(), function(result) {
-			readyState = { 
+			readyState = {
 				isError: result != 'undefined' && result.trim() != '',
 				statusMessage: result
 			};
