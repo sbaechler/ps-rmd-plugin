@@ -5,6 +5,9 @@ angular.module('app')
   var csInterface = new CSInterface();
 
   return csInterface;
+})
+.factory('CSEvent', function(){
+  return CSEvent;
 });
 
 }());

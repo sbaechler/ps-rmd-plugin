@@ -15,6 +15,9 @@
     },
     closeExtension: function () {},
     evalScript: function(script, callback) {
+      if(script === '$.XMP.getRawXMP()') {
+        callback('');
+      }
       callback('undefined');
     },
     getHostCapabilities: function(){

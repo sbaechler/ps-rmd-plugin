@@ -717,7 +717,7 @@ CSInterface.prototype.dumpInstallationInfo = function()
  *
  * @return A string containing the OS version, or "unknown Operation System".
  * If user customizes the User Agent by setting CEF command parameter "--user-agent", only
- * "Mac OS X" or "Windows" will be returned. 
+ * "Mac OS X" or "Windows" will be returned.
  */
 CSInterface.prototype.getOSInformation = function()
 {
@@ -760,14 +760,14 @@ CSInterface.prototype.getOSInformation = function()
             }
             else
             {
-                winBit = "32-bit";			
+                winBit = "32-bit";
             }
         }
 
         return winVersion + winBit;
     }
     else if ((navigator.platform == "MacIntel") || (navigator.platform == "Macintosh"))
-    {        
+    {
         var result = "Mac OS X";
         var agentStr = new String();
         agentStr = userAgent;
@@ -776,10 +776,10 @@ CSInterface.prototype.getOSInformation = function()
             var verLength = agentStr.indexOf(")") - agentStr.indexOf("Mac OS X");
             var verStr = agentStr.substr(agentStr.indexOf("Mac OS X"), verLength);
             result = verStr.replace("_", ".");
-            result = result.replace("_", ".");        
+            result = result.replace("_", ".");
         }
 
-        return result;        
+        return result;
     }
 
     return "Unknown Operation System";
@@ -823,7 +823,7 @@ CSInterface.prototype.getExtensionID = function()
 };
 
 /**
- * Retrieves the scale factor of screen. 
+ * Retrieves the scale factor of screen.
  * On Windows platform, the value of scale factor might be different from operating system's scale factor,
  * since host application may use its self-defined scale factor.
  *
@@ -873,9 +873,9 @@ CSInterface.prototype.getCurrentApiVersion = function()
  *
  * Since 5.2.0
  *
- * Register a callback function for "com.adobe.csxs.events.flyoutMenuClicked" to get notified when a 
+ * Register a callback function for "com.adobe.csxs.events.flyoutMenuClicked" to get notified when a
  * menu item is clicked.
- * The "data" attribute of event is an object which contains "menuId" and "menuName" attributes. 
+ * The "data" attribute of event is an object which contains "menuId" and "menuName" attributes.
  *
  * Register callback functions for "com.adobe.csxs.events.flyoutMenuOpened" and "com.adobe.csxs.events.flyoutMenuClosed"
  * respectively to get notified when flyout menu is opened or closed.
@@ -899,7 +899,7 @@ CSInterface.prototype.setPanelFlyoutMenu = function(menu)
 {
     if ("string" != typeof menu)
     {
-        return;	
+        return;
     }
 
 	window.__adobe_cep__.invokeSync("setPanelFlyoutMenu", menu);
@@ -908,14 +908,14 @@ CSInterface.prototype.setPanelFlyoutMenu = function(menu)
 /**
  * Updates a menu item in the extension window's flyout menu, by setting the enabled
  * and selection status.
- *  
+ *
  * Since 5.2.0
  *
- * @param menuItemLabel	The menu item label. 
+ * @param menuItemLabel	The menu item label.
  * @param enabled		True to enable the item, false to disable it (gray it out).
  * @param checked		True to select the item, false to deselect it.
  *
- * @return false when the host application does not support this functionality (HostCapabilities.EXTENDED_PANEL_MENU is false). 
+ * @return false when the host application does not support this functionality (HostCapabilities.EXTENDED_PANEL_MENU is false).
  *         Fails silently if menu label is invalid.
  *
  * @see HostCapabilities.EXTENDED_PANEL_MENU
@@ -923,7 +923,7 @@ CSInterface.prototype.setPanelFlyoutMenu = function(menu)
 CSInterface.prototype.updatePanelMenuItem = function(menuItemLabel, enabled, checked)
 {
 	var ret = false;
-	if (this.getHostCapabilities().EXTENDED_PANEL_MENU) 
+	if (this.getHostCapabilities().EXTENDED_PANEL_MENU)
 	{
 		var itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked);
 		ret = window.__adobe_cep__.invokeSync("updatePanelMenuItem", JSON.stringify(itemStatus));
@@ -941,8 +941,8 @@ CSInterface.prototype.updatePanelMenuItem = function(menuItemLabel, enabled, che
  * - an item without menu ID or menu name is disabled and is not shown.
  * - if the item name is "---" (three hyphens) then it is treated as a separator. The menu ID in this case will always be NULL.
  * - Checkable attribute takes precedence over Checked attribute.
- * - a PNG icon. For optimal display results please supply a 16 x 16px icon as larger dimensions will increase the size of the menu item. 
-     The Chrome extension contextMenus API was taken as a reference. 
+ * - a PNG icon. For optimal display results please supply a 16 x 16px icon as larger dimensions will increase the size of the menu item.
+     The Chrome extension contextMenus API was taken as a reference.
      https://developer.chrome.com/extensions/contextMenus
  * - the items with icons and checkable items cannot coexist on the same menu level. The former take precedences over the latter.
  *
@@ -968,7 +968,7 @@ CSInterface.prototype.setContextMenu = function(menu, callback)
     {
         return;
     }
-    
+
 	window.__adobe_cep__.invokeAsync("setContextMenu", menu, callback);
 };
 
@@ -981,7 +981,7 @@ CSInterface.prototype.setContextMenu = function(menu, callback)
  * - an item without menu ID or menu name is disabled and is not shown.
  * - if the item label is "---" (three hyphens) then it is treated as a separator. The menu ID in this case will always be NULL.
  * - Checkable attribute takes precedence over Checked attribute.
- * - a PNG icon. For optimal display results please supply a 16 x 16px icon as larger dimensions will increase the size of the menu item. 
+ * - a PNG icon. For optimal display results please supply a 16 x 16px icon as larger dimensions will increase the size of the menu item.
      The Chrome extension contextMenus API was taken as a reference.
  * - the items with icons and checkable items cannot coexist on the same menu level. The former take precedences over the latter.
      https://developer.chrome.com/extensions/contextMenus
@@ -991,7 +991,7 @@ CSInterface.prototype.setContextMenu = function(menu, callback)
  *
  * An example menu JSON:
  *
- * { 
+ * {
  *      "menu": [
  *          {
  *              "id": "menuItemId1",
@@ -1045,18 +1045,18 @@ CSInterface.prototype.setContextMenuByJSON = function(menu, callback)
 {
     if ("string" != typeof menu)
     {
-        return;	
+        return;
     }
-    
+
 	window.__adobe_cep__.invokeAsync("setContextMenuByJSON", menu, callback);
 };
 
 /**
  * Updates a context menu item by setting the enabled and selection status.
- *  
+ *
  * Since 5.2.0
  *
- * @param menuItemID	The menu item ID. 
+ * @param menuItemID	The menu item ID.
  * @param enabled		True to enable the item, false to disable it (gray it out).
  * @param checked		True to select the item, false to deselect it.
  */
@@ -1067,8 +1067,8 @@ CSInterface.prototype.updateContextMenuItem = function(menuItemID, enabled, chec
 };
 
 /**
- * Get the visibility status of an extension window. 
- *  
+ * Get the visibility status of an extension window.
+ *
  * Since 6.0.0
  *
  * @return true if the extension window is visible; false if the extension window is hidden.
@@ -1081,7 +1081,7 @@ CSInterface.prototype.isWindowVisible = function()
 /**
  * Resize extension's content to the specified dimensions.
  * 1. Works with modal and modeless extensions in all Adobe products.
- * 2. Extension's manifest min/max size constraints apply and take precedence. 
+ * 2. Extension's manifest min/max size constraints apply and take precedence.
  * 3. For panel extensions
  *    3.1 This works in all Adobe products except:
  *        * Premiere Pro

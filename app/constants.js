@@ -18,10 +18,6 @@ angular.module('app')
       "xmpmeta": {
         "RDF": {
           "Description": {
-            "MinWidth": {
-              "__prefix": "rmd",
-              "__text": "360"
-            },
             "Interpolation": {
               "__prefix": "rmd",
               "__text": "linear"

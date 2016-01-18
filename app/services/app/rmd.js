@@ -3,8 +3,7 @@ angular.module('app')
   function(XMPBridge, Namespaces, _, x2js, rmdDefault) {
 
   // TODO: store metadata for different targets (=files)
-  var targets = {};
-  var ns = Namespaces.rmd;
+  // var targets = {};
 
   var RMD = function() {
     this.xmp = _.cloneDeep(rmdDefault);
@@ -46,13 +45,11 @@ angular.module('app')
       return new Promise(function(resolve) {
         XMPBridge.setRawXmp(xml, function(response){resolve(response);});
       });
-    }
+    };
+
   };
 
   var rmd = new RMD();
-  rmd.extractXMP().catch(function(error) {
-    throw new Error(error);
-  });
 
   return rmd;
 

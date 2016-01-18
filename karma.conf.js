@@ -23,9 +23,7 @@ module.exports = function(config) {
       'bower_components/ng-lodash/build/ng-lodash.min.js',
       'test/stubs/cep_mock.js',
       'ext/*.js',
-      //'jsx/*.jsx',
       'app/**/*.js',
-      'test/stubs/xmpbridge_mock.js',
       'test/**/*Spec.js'
     ],
 
@@ -66,7 +64,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS', 'Chrome'],
 
 
     // Continuous Integration mode
