@@ -70,10 +70,11 @@ var themeManager = (function () {
     function updateThemeWithAppSkinInfo(appSkinInfo) {
         
         var panelBgColor = appSkinInfo.panelBackgroundColor.color;
+        var topcoatCss = document.getElementById('topcoat');
         var bgdColor = toHex(panelBgColor);
        
         var darkBgdColor =  toHex(panelBgColor, 20);
-        
+
         var fontColor = "F0F0F0";
         if (panelBgColor.red > 122) {
             fontColor = "000000";
@@ -101,7 +102,15 @@ var themeManager = (function () {
         addRule(styleId, ".hostButton", "background-color:" + "#" + darkBgdColor);
         addRule(styleId, ".hostButton:hover", "background-color:" + "#" + bgdColor);
         addRule(styleId, ".hostButton:active", "background-color:" + "#" + darkBgdColor);
-        addRule(styleId, ".hostButton", "border-color: " + "#" + lightBgdColor);        
+        addRule(styleId, ".hostButton", "border-color: " + "#" + lightBgdColor);
+
+        if(topcoatCss) {
+            if (panelBgColor.red >= 127) {
+              topcoatCss.setAttribute("href", "../bower_components/topcoat/css/topcoat-desktop-light.min.css");
+            } else {
+              topcoatCss.setAttribute("href", "../bower_components/topcoat/css/topcoat-desktop-dark.min.css");
+            }
+        }
 
     }
     

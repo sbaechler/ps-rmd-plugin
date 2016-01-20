@@ -22,6 +22,9 @@
         <Resources>
           <MainPath>./root/index.html</MainPath>
           <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+          <CEFCommandLine>
+            <Parameter>--enable-nodejs</Parameter>
+          </CEFCommandLine>
         </Resources>
         <Lifecycle>
           <AutoVisible>true</AutoVisible>
@@ -30,16 +33,16 @@
           <Type>Panel</Type>
           <Menu>Universal Images</Menu>
           <Geometry>
-            <!--Size>
+            <Size>
               <Height>480</Height>
-              <Width>720</Width>
-            </Size-->
+              <Width>340</Width>
+            </Size>
             <MinSize>
               <Height>480</Height>
-              <Width>320</Width>
+              <Width>300</Width>
             </MinSize>
             <MaxSize>
-              <Height>550</Height>
+              <Height>640</Height>
               <Width>640</Width>
             </MaxSize>
           </Geometry>

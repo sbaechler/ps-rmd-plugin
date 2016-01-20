@@ -2,17 +2,20 @@
 <html ng-app="app">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="../bower_components/topcoat/css/topcoat-desktop-dark.min.css">
+  <link rel="stylesheet" id="topcoat" href="../bower_components/topcoat/css/topcoat-desktop-dark.min.css">
   <link rel='stylesheet' type='text/css' href='../bower_components/topcoat-icons/font/icomatic.css' />
+  <link rel="stylesheet" id="hostStyle" type="text/css" href="../css/theme.css" />
   <!-- bower:css -->
   <!-- endbower -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/theme.css">
   <!-- endinject -->
-  <title></title>
+  <script src="../bower_components/modernizr/modernizr.js"></script>
+  <title>Responsive Metadata</title>
 </head>
 <body class="hostElt" >
-  <div ng-controller="MainController" id="content">
+  <div ng-controller="MainController" id="content" class="hostFont">
     <h1>Universal Images</h1>
     {{greeting}}
 
@@ -29,12 +32,12 @@
             <div class="topcoat-radio-button__checkmark"></div>
             None
           </label>
-          <label class="topcoat-checkbox">
+          <label class="topcoat-checkbox hostFontColor">
             <input type="radio" name="allowedDerivates" ng-model="rmd.AllowedDerivates.Crop.__text" value="visibilityOnly">
             <div class="topcoat-radio-button__checkmark"></div>
             Visibility Only
           </label>
-          <label class="topcoat-checkbox">
+          <label class="topcoat-checkbox hostFontColor">
             <input type="radio" name="allowedDerivates" checked ng-model="rmd.AllowedDerivates.Crop.__text" value="all">
             <div class="topcoat-radio-button__checkmark"></div>
             All
@@ -50,17 +53,17 @@
         <button ng-class="{active: isAreaActive('pivot')}" class="topcoat-icon-button--quiet" ng-click="setActiveArea('pivot')">
           <span class='icomatic icon'>pencil</span>
         </button>
-        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.x.__text">
-        <input type="text" class="topcoat-text-input" ng-model="rmd.PivotPoint.y.__text">
+        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint.x.__text">
+        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint.y.__text">
       </fieldset>
 
       <fieldset>
         <legend>File</legend>
-        <button class="topcoat-button" ng-click="commit()">
+        <button class="topcoat-button hostButton hostElt" ng-click="commit()">
           <span class='icomatic icon'>save</span>
           Commit
         </button>
-        <button class="topcoat-button" ng-click="revert()">
+        <button class="topcoat-button hostButton hostElt" ng-click="revert()">
           <span class='icomatic icon'>refresh</span>
           Revert
         </button>
@@ -68,7 +71,7 @@
     </div>
   </div>
     
-    
+
 <!-- ext:js -->
 <script src="../ext/CSInterface.js"></script>
 <script src="../ext/themeManager.js"></script>

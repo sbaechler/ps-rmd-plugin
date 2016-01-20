@@ -19,7 +19,9 @@
     "topcoat": "~0.8.0",
     "ng-lodash": "~0.3.0",
     "angular-xml": "~2.2.1",
-    "topcoat-icons": "~0.2.0"
+    "topcoat-icons": "~0.2.0",
+    "modernizr": "~2",
+    "x2js": "~1.2.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.8",

@@ -9,5 +9,6 @@
     "themeManager": true
   },
   "devel": true,
-  "jasmine" : true
+  "jasmine" : true,
+  "browser" : true
 }

@@ -1,4 +1,6 @@
-(function() {
+(function(global) {
+  'use strict';
+
   var SELECTION_SIZE_FOR_POINT = 4;
 
   angular.module('app')
@@ -50,14 +52,14 @@
           RMD.extractXMP().then(function () {
             $scope.rmd = RMD.xmp.xmpmeta.RDF.Description;
             $scope.targetName = RMD.targetName;
-          });
+          }).catch(function(error){throw new Error(error);});
 
           $scope.documentSize = {};
 
 
           // TODO: Remove debugging exposures.
-          //global._scope = $scope;
-          //global.RMD = RMD;
+          global._scope = $scope;
+          global.RMD = RMD;
 
           // store the original image size
           csInterface.evalScript('getDocumentSize()', function (value) {
@@ -76,7 +78,7 @@
               if (data.eventData.null._property === 'selection' && data.eventID === psEvent.set
                   && data.eventData.to._obj === 'rectangle' && activeArea) {
                 if (data.eventData.to.top._unit === 'pixelsUnit') {
-                  setAreaValues(data.eventData.to);
+                  $scope.setAreaValues(data.eventData.to);
                 } else {
                   alert('Please set the units to Pixels. Other units are currently not supported.');
                 }
@@ -90,7 +92,7 @@
            * Get the RMD object node for the given area key.
            * @returns {*} RMD node.
            */
-          var getNodeForActiveArea = function () {
+          $scope.getNodeForActiveArea = function () {
             if (activeArea === 'default') {
               return $scope.rmd.CropArea;
             } else if (activeArea === 'safe') {
@@ -106,9 +108,9 @@
            * Sets the values returned by a Photoshop event in the RMD node.
            * @param ps_data Photoshop event property.
            */
-          var setAreaValues = function (ps_data) {
+          $scope.setAreaValues = function (ps_data) {
             var node, x, y, width, height;
-            node = getNodeForActiveArea();
+            node = $scope.getNodeForActiveArea();
             // PS returns the are as left, top, width height.
             // The RMD standard requires centerX, centerY, width height.
             width = ps_data.right._value - ps_data.left._value;
@@ -125,9 +127,9 @@
             $scope.$apply();
           };
 
-          var setSelectionFromRmd = function () {
+          $scope.setSelectionFromRmd = function () {
             var x, y, width, height, left, top, coords;
-            var node = getNodeForActiveArea();
+            var node = $scope.getNodeForActiveArea();
             x = parseFloat(node.x.__text) * $scope.documentSize.width;
             y = parseFloat(node.y.__text) * $scope.documentSize.height;
             if (node.w && node.h) {
@@ -188,6 +190,7 @@
             } else if (index === 'safe') {
               delete $scope.rmd.SafeArea;
             } else {
+              index = parseInt(index);
               $scope.rmd.RecommendedFrames.Bag.li.splice(index, 1);
             }
           };
@@ -214,14 +217,14 @@
                 selectListener(true);
               }
               activeArea = area;
-              setSelectionFromRmd();
+              $scope.setSelectionFromRmd();
             }
           };
 
           $scope.commit = function () {
             RMD.storeXMP().then(function (response) {
-              if (response == 0) {
-                alert('XMP updated');
+              if (parseInt(response) === 0) {
+                // alert('XMP updated');
               }
             });
           };
@@ -233,7 +236,7 @@
                   $scope.$apply();
                 });
           };
-
+          return this;
         }
       ]);
-}());
+}(window));

@@ -6,8 +6,7 @@ angular.module('app')
   // var targets = {};
 
   var RMD = function() {
-    this.xmp = _.cloneDeep(rmdDefault);
-
+    this.xmp = {};
     /**
      * Extracts the XMP metadata from the file and stores it in the xmp property.
      */
@@ -20,8 +19,9 @@ angular.module('app')
               self.targetName = targetName;
             });
             XMPBridge.getRawXmp(function(xmp) {
-              var new_xmp = x2js.xml_str2json(xmp);
-              _.extend(self.xmp, new_xmp);
+              console.log(x2js.xml_str2json(xmp));
+              self.xmp = x2js.xml_str2json(xmp);
+              _.defaultsDeep(self.xmp, _.cloneDeep(rmdDefault));
               resolve(self.xmp);
             });
           } else {
@@ -41,11 +41,31 @@ angular.module('app')
      * Stores the XMP metadata in the file.
      */
     this.storeXMP = function() {
-      var xml = x2js.json2xml_str(this.xmp);
+      console && console.log('Storing XMP');
+      // this._removeEmptyNodes(this.xmp.xmpmeta);
+      // remove Angular.js hints
+      var cleanObj = JSON.parse(angular.toJson(this.xmp));
+
+      var xml = x2js.json2xml_str(cleanObj);
+      console.log(xml);
       return new Promise(function(resolve) {
-        XMPBridge.setRawXmp(xml, function(response){resolve(response);});
+        XMPBridge.setRawXmp(xml, resolve);
       });
     };
+
+    //this._removeEmptyNodes = function removeEmptyNodes(parent) {
+    //  _.forOwn(parent, function(value, key) {
+    //    if (typeof value === 'object') {
+    //      if(value.__prefix === 'rmd' && value.__text === undefined) {
+    //        // empty node
+    //        console.log('removing ', parent, key);
+    //        delete parent[key];
+    //      } else {
+    //        removeEmptyNodes(value);
+    //      }
+    //    }
+    //  });
+    //};
 
   };
 
