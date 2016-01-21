@@ -76,7 +76,7 @@ describe('MainController Test', function(){
   });
   it('Correctly creates nodes for an area', function() {
     var node;
-    expect(typeof scope.rmd.SafeArea).toBe('object');
+    expect(typeof scope.rmd.SafeArea).toBe('undefined');
     expect(typeof scope.rmd.CropArea).toBe('undefined');
     expect(typeof scope.rmd.RecommendedFrames).toBe('object');
     expect(typeof scope.rmd.RecommendedFrames.Bag.li).toBe('object');
@@ -100,12 +100,13 @@ describe('MainController Test', function(){
     expect(node[0].x.__text).toBe('0.500000');
     expect(node[0].x.__prefix).toBe('stArea');
     expect(node[0].y.__prefix).toBe('stArea');
-    expect(node[0].MaxWidth.__prefix).toBe('rmd');
-    expect(node[0].MinWidth.__prefix).toBe('rmd');
+    expect(node[0].MaxWidth).toBe(undefined);
+    expect(node[0].MinWidth).toBe(undefined);
   });
 
   it('Correctly removes an area', function() {
     var node;
+    scope.rmd.SafeArea = {};
     expect(typeof scope.rmd.SafeArea).toBe('object');
     scope.removeCropArea('safe');
     expect(scope.rmd.SafeArea).toBe(undefined);
@@ -117,6 +118,7 @@ describe('MainController Test', function(){
   });
 
   it('Returns the right active area', function() {
+    scope.addCropArea('safe');
     scope.addCropArea('default');
     scope.addCropArea();
     scope.setActiveArea('safe');
@@ -127,22 +129,22 @@ describe('MainController Test', function(){
     activeArea = scope.getNodeForActiveArea();
     // safe area
     expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea.MinWidth).toBe(undefined);
-    expect(activeArea.MaxWidth).not.toBe(undefined);
+    expect(activeArea['rmd:MinWidth']).toBe(undefined);
+    expect(activeArea['rmd:MaxWidth']).toBe(undefined);
 
     scope.setActiveArea('default');
     expect(scope.isAreaActive('default')).toBe(true);
     activeArea = scope.getNodeForActiveArea();
     expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea.MinWidth).not.toBe(undefined);
-    expect(activeArea.MaxWidth).toBe(undefined);
+    expect(activeArea['rmd:MinWidth']).toBe(undefined);
+    expect(activeArea['rmd:MaxWidth']).toBe(undefined);
 
     scope.setActiveArea(0);
     expect(scope.isAreaActive(0)).toBe(true);
     activeArea = scope.getNodeForActiveArea();
     expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea.MinWidth).not.toBe(undefined);
-    expect(activeArea.MaxWidth).not.toBe(undefined);
+    expect(activeArea['rmd:MinWidth']).toBe(undefined);
+    expect(activeArea['rmd:MaxWidth']).toBe(undefined);
   });
 
   it('Correctly sets the area values', function() {
@@ -164,6 +166,7 @@ describe('MainController Test', function(){
 
   it('Creates the right selection in Photoshop', function(){
     var calls;
+    scope.addCropArea('safe');
     scope.setActiveArea('safe');
     calls = csInterface.evalScript.calls.count();
     expect(csInterface.evalScript).toHaveBeenCalledTimes(calls);

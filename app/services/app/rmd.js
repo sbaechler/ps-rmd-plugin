@@ -5,6 +5,18 @@ angular.module('app')
   // TODO: store metadata for different targets (=files)
   // var targets = {};
 
+  //function removeEmptyNodes(parent) {
+  //  _.forOwn(parent, function(value, key) {
+  //     if (value === null && typeof value === "object") {
+  //      delete parent[key];
+  //    } else if (typeof value === 'object') {
+  //      removeEmptyNodes(value);
+  //    }
+  //  });
+  //}
+
+  var compressedNodes = ['MinWidth', 'MaxWidth', 'MinAspectRatio', 'MaxAspectRatio'];
+
   var RMD = function() {
     this.xmp = {};
     /**
@@ -19,8 +31,9 @@ angular.module('app')
               self.targetName = targetName;
             });
             XMPBridge.getRawXmp(function(xmp) {
-              console.log(x2js.xml_str2json(xmp));
+              // console.log(x2js.xml_str2json(xmp));
               self.xmp = x2js.xml_str2json(xmp);
+              self._compressAreaNodes(self.xmp.xmpmeta.RDF.Description);
               _.defaultsDeep(self.xmp, _.cloneDeep(rmdDefault));
               resolve(self.xmp);
             });
@@ -42,30 +55,36 @@ angular.module('app')
      */
     this.storeXMP = function() {
       console && console.log('Storing XMP');
-      // this._removeEmptyNodes(this.xmp.xmpmeta);
       // remove Angular.js hints
       var cleanObj = JSON.parse(angular.toJson(this.xmp));
+      // removeEmptyNodes(cleanObj.xmpmeta);
 
       var xml = x2js.json2xml_str(cleanObj);
-      console.log(xml);
+      // console.log(xml);
       return new Promise(function(resolve) {
         XMPBridge.setRawXmp(xml, resolve);
       });
     };
 
-    //this._removeEmptyNodes = function removeEmptyNodes(parent) {
-    //  _.forOwn(parent, function(value, key) {
-    //    if (typeof value === 'object') {
-    //      if(value.__prefix === 'rmd' && value.__text === undefined) {
-    //        // empty node
-    //        console.log('removing ', parent, key);
-    //        delete parent[key];
-    //      } else {
-    //        removeEmptyNodes(value);
-    //      }
-    //    }
-    //  });
-    //};
+    this._compressAreaNodes = function(root){
+      root.CropArea && this._compressAreaNode(root.CropArea);
+      root.SafeArea && this._compressAreaNode(root.SafeArea);
+      _.each(root.RecommendedFrames.Bag.li, function(node){
+        this._compressAreaNode(node);
+      }, this);
+    };
+
+    this._compressAreaNode = function(node) {
+      _.each(compressedNodes, function(key){
+        if(typeof node[key] === 'object') {
+          var details = node[key];
+          if(details.__prefix !== undefined) {
+            node[details.__prefix + ':' + key] = details.__text;
+          }
+          delete node[key];
+        }
+      }, this);
+    };
 
   };
 

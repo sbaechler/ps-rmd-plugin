@@ -100,7 +100,7 @@
             } else if (activeArea === 'pivot') {
               return $scope.rmd.PivotPoint;
             } else {
-              return $scope.rmd.RecommendedFrames.Bag.li[activeArea]
+              return $scope.rmd.RecommendedFrames.Bag.li[activeArea];
             }
           };
 
@@ -167,11 +167,15 @@
               struct = _.cloneDeep(rmdFrameStruct);
               delete struct.MinAspectRatio;
               delete struct.MaxAspectRatio;
+              delete struct['rmd:MinAspectRatio'];
+              delete struct['rmd:MaxAspectRatio'];
               if (name === 'default') {
                 delete struct.MaxWidth;
+                delete struct['rmd:MaxWidth'];
                 $scope.rmd.CropArea = struct;
               } else if (name === 'safe') {
                 delete struct.MinWidth;
+                delete struct['rmd:MinWidth'];
                 $scope.rmd.SafeArea = struct;
               }
             }

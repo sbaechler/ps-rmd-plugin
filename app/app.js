@@ -16,7 +16,8 @@
       datetimeAccessFormPaths  : [] - Datetime access paths. Use this option to configure paths to XML elements for "datetime form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
       */
       attributePrefix: '_',
-      arrayAccessFormPaths: ['xmpmeta.RDF.Description.RecommendedFrames.Bag.li']
+      arrayAccessFormPaths: ['xmpmeta.RDF.Description.RecommendedFrames.Bag.li'],
+      skipEmptyTextNodesForObj: true
     };
   });
 }(window));

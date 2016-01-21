@@ -38,42 +38,6 @@ angular.module('app')
               "_rdf:parseType": "Resource",
               "__prefix": "rmd"
             },
-            //"SafeArea": {
-            //  "x": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.500000"
-            //  },
-            //  "y": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.500000"
-            //  },
-            //  "w": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.900000"
-            //  },
-            //  "h": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.900000"
-            //  },
-            //  "MaxWidth": {
-            //    "__prefix": "rmd",
-            //    "__text": ""
-            //  },
-            //  "_rdf:parseType": "Resource",
-            //  "__prefix": "rmd"
-            //},
-            //"PivotPoint": {
-            //  "x": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.380000"
-            //  },
-            //  "y": {
-            //    "__prefix": "stArea",
-            //    "__text": "0.660000"
-            //  },
-            //  "_rdf:parseType": "Resource",
-            //  "__prefix": "rmd"
-            //},
             "RecommendedFrames": {
               "Bag": {
                 "li": [],
@@ -113,14 +77,6 @@ angular.module('app')
     "h": {
       "__prefix": "stArea",
       "__text": "0.900000"
-    },
-    "MaxWidth": {
-      "__prefix": "rmd",
-      "__text": null
-    },
-    "MinWidth": {
-      "__prefix": "rmd",
-      "__text": null
     },
     "MinAspectRatio": {
       "__prefix": "rmd",
