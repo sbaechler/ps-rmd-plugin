@@ -39,8 +39,8 @@ body {
 }
 
 label {
-  color: $text-color-dark;
-  text-shadow: 0 -1px rgba(0,0,0,.69);
+  // color: $text-color-dark;
+  // text-shadow: 0 -1px rgba(0,0,0,.69);
   display: flex;
   flex: 1 1;
   align-items: center;
@@ -49,7 +49,7 @@ label {
     flex-flow: column;
   }
   &.inactive {
-    color: $text-color-light;
+    // color: $text-color-light;
     text-shadow: none;
   }
 }

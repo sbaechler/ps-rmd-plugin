@@ -66,12 +66,23 @@ angular.module('app')
       });
     };
 
+    /**
+     * Sets the Applied to Dimensions value.
+     * @param documentSize - Object: {height, width}
+     */
+    this.setDocumentSize = function(documentSize) {
+      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions.w.__text = documentSize.width;
+      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions.h.__text = documentSize.height;
+    };
+
     this._compressAreaNodes = function(root){
       root.CropArea && this._compressAreaNode(root.CropArea);
       root.SafeArea && this._compressAreaNode(root.SafeArea);
-      _.each(root.RecommendedFrames.Bag.li, function(node){
-        this._compressAreaNode(node);
-      }, this);
+      if(root.RecommendedFrames && root.RecommendedFrames.Bag) {
+        _.each(root.RecommendedFrames.Bag.li, function(node){
+          this._compressAreaNode(node);
+        }, this);
+      }
     };
 
     this._compressAreaNode = function(node) {

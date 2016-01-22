@@ -49,8 +49,8 @@
           selectListener(false);
 
           // Get the XMP from the open file and store the name of it for reference.
-          RMD.extractXMP().then(function () {
-            $scope.rmd = RMD.xmp.xmpmeta.RDF.Description;
+          RMD.extractXMP().then(function (xmp) {
+            $scope.rmd = xmp.xmpmeta.RDF.Description;
             $scope.targetName = RMD.targetName;
           }).catch(function(error){throw new Error(error);});
 
@@ -160,11 +160,11 @@
            * @param name - the name of the area. One of 'default', 'safe' or a number.
            */
           $scope.addCropArea = function (name) {
-            var struct;
+            var struct = _.cloneDeep(rmdFrameStruct);
             if (name === undefined) {
-              $scope.rmd.RecommendedFrames.Bag.li.push(_.cloneDeep(rmdFrameStruct));
+              struct.__prefix = 'rdf';
+              $scope.rmd.RecommendedFrames.Bag.li.push(struct);
             } else {
-              struct = _.cloneDeep(rmdFrameStruct);
               delete struct.MinAspectRatio;
               delete struct.MaxAspectRatio;
               delete struct['rmd:MinAspectRatio'];
@@ -226,10 +226,14 @@
           };
 
           $scope.commit = function () {
-            RMD.storeXMP().then(function (response) {
-              if (parseInt(response) === 0) {
-                // alert('XMP updated');
-              }
+            csInterface.evalScript('getDocumentSize()', function (value) {
+              $scope.documentSize = JSON.parse(value);
+              RMD.setDocumentSize($scope.documentSize);
+              RMD.storeXMP().then(function (response) {
+                if (parseInt(response) === 0) {
+                  console && console.log('XMP updated');
+                }
+              });
             });
           };
 

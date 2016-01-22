@@ -78,14 +78,6 @@ angular.module('app')
       "__prefix": "stArea",
       "__text": "0.900000"
     },
-    "MinAspectRatio": {
-      "__prefix": "rmd",
-      "__text": null
-    },
-    "MaxAspectRatio": {
-      "__prefix": "rmd",
-      "__text": null
-    },
     "_rdf:parseType": "Resource",
     "__prefix": "rmd"
   }

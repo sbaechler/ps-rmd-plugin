@@ -58,6 +58,20 @@
       </fieldset>
 
       <fieldset>
+        <legend>Interpolation</legend>
+        <label class="topcoat-checkbox">
+          <input type="radio" name="interpolation" ng-model="rmd.Interpolation.__text" value="linear">
+          <div class="topcoat-radio-button__checkmark"></div>
+          Linear
+        </label>
+        <label class="topcoat-checkbox hostFontColor">
+          <input type="radio" name="interpolation" ng-model="rmd.Interpolation.__text" value="step">
+          <div class="topcoat-radio-button__checkmark"></div>
+          Step
+        </label>
+      </fieldset>
+
+      <fieldset>
         <legend>File</legend>
         <button class="topcoat-button hostButton hostElt" ng-click="commit()">
           <span class='icomatic icon'>save</span>
