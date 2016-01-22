@@ -9,3 +9,4 @@ css/app.css
 .yo-rc.json
 .DS_Store
 .idea
+.env.js

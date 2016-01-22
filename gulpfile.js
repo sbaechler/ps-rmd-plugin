@@ -2,6 +2,7 @@ var gulp = require('gulp-help')(require('gulp')),
   jshint = require('gulp-jshint'),
   gutil = require('gulp-util'),
   inject = require('gulp-inject'),
+  env = require('gulp-env'),
   shell = require('gulp-shell'),
   sourcemaps = require('gulp-sourcemaps'),
   sass = require('gulp-sass'),
@@ -36,11 +37,15 @@ var allSrcFiles = [
     'bower_components/**/*'
   ],
   // The selfSigned certificate used to compile the extension
-  certPath = path.join('./bin', 'testCert.p12'),
+  certPath = path.join('./bin', 'TestCert.p12'),
   // The path and name of the compiled ZXP file
-  zxpPath = path.join('./build', 'test.zxp'),
+  zxpPath = path.join('./build', 'universalimages.zxp'),
   // The path to the zxpSignCmd binary
   binPath = path.join('./bin', 'ZXPSignCmd');
+
+env({
+  file: '.env'
+});
 
 gulp.task('hint', 'Run JSHint against your project files', function () {
   return gulp.src(allSrcFiles)
@@ -87,12 +92,12 @@ gulp.task('watch', 'Build based on file changes', function () {
 gulp.task('cert', 'Create a signing cert for your extension', shell.task([
     InsertSpaces(binPath,
       '-selfSignedCert',
-      'US',
+      'CH',
       'NA',
       'company',
-      'test',
-      '01189998819991197253',
-      path.join('./bin', 'testCert.p12'))
+      'Universalimages',
+      '"'+process.env.TEST_CERT_PW+'"',
+      certPath)
 ]));
 
 gulp.task('build', 'Compile the bundled ZXP', function (cb) {
@@ -124,7 +129,9 @@ gulp.task('build:compile', false, shell.task([
     './dist',
     zxpPath,
     certPath,
-    '01189998819991197253')
+    '"'+process.env.TEST_CERT_PW+'"'
+    // '-tsa http://tsa.safecreative.org'
+  )
 ]));
 
 function InsertSpaces () {
