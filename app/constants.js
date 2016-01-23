@@ -18,24 +18,10 @@ angular.module('app')
       "xmpmeta": {
         "RDF": {
           "Description": {
-            "Interpolation": {
-              "__prefix": "rmd",
-              "__text": "linear"
-            },
             "AppliedToDimensions": {
-              "w": {
-                "__prefix": "stDim",
-                "__text": "0"
-              },
-              "h": {
-                "__prefix": "stDim",
-                "__text": "0"
-              },
-              "unit": {
-                "__prefix": "stDim",
-                "__text": "pixel"
-              },
-              "_rdf:parseType": "Resource",
+              "_stDim:w": "0",
+              "_stDim:h": "0",
+              "_stDim:unit": "pixel",
               "__prefix": "rmd"
             },
             "RecommendedFrames": {
@@ -46,13 +32,13 @@ angular.module('app')
               "__prefix": "rmd"
             },
             "AllowedDerivates": {
-              "Crop": {
-                "__prefix": "rmd",
-                "__text": "all"
-              },
-              "_rdf:parseType": "Resource",
+              "_rmd:Crop": "all",
               "__prefix": "rmd"
             },
+            "PivotPoint": {
+              "__prefix": "rmd"
+            },
+            "_rmd:Interpolation": "linear",
             "_xmlns:rmd": "http://universalimages.github.io/rmd/0.1/",
             "_xmlns:stDim": "http://ns.adobe.com/xap/1.0/sType/Dimensions#",
             "_xmlns:stArea": "http://ns.adobe.com/xmp/sType/Area#"
@@ -62,23 +48,11 @@ angular.module('app')
     }
 )
 .constant('rmdFrameStruct', {
-    "x": {
-      "__prefix": "stArea",
-      "__text": "0.500000"
-    },
-    "y": {
-      "__prefix": "stArea",
-      "__text": "0.500000"
-    },
-    "w": {
-      "__prefix": "stArea",
-      "__text": "0.900000"
-    },
-    "h": {
-      "__prefix": "stArea",
-      "__text": "0.900000"
-    },
-    "_rdf:parseType": "Resource",
+    "_stArea:x": "0.500000",
+    "_stArea:y": "0.500000",
+    "_stArea:w": "0.900000",
+    "_stArea:h": "0.900000",
+    //"_rdf:parseType": "Resource",
     "__prefix": "rmd"
   }
 );

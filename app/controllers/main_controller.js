@@ -117,11 +117,11 @@
             height = ps_data.bottom._value - ps_data.top._value;
             x = ps_data.left._value + width / 2;
             y = ps_data.top._value + height / 2;
-            node.x.__text = (x / $scope.documentSize.width).toString();
-            node.y.__text = (y / $scope.documentSize.height).toString();
-            if (node.w && node.h) {
-              node.w.__text = (width / $scope.documentSize.width).toString();
-              node.h.__text = (height / $scope.documentSize.height).toString();
+            node['_stArea:x'] = (x / $scope.documentSize.width).toString();
+            node['_stArea:y'] = (y / $scope.documentSize.height).toString();
+            if (node['_stArea:w'] && node['_stArea:h']) {
+              node['_stArea:w'] = (width / $scope.documentSize.width).toString();
+              node['_stArea:h'] = (height / $scope.documentSize.height).toString();
             }
 
             $scope.$apply();
@@ -130,11 +130,11 @@
           $scope.setSelectionFromRmd = function () {
             var x, y, width, height, left, top, coords;
             var node = $scope.getNodeForActiveArea();
-            x = parseFloat(node.x.__text) * $scope.documentSize.width;
-            y = parseFloat(node.y.__text) * $scope.documentSize.height;
-            if (node.w && node.h) {
-              width = parseFloat(node.w.__text) * $scope.documentSize.width;
-              height = parseFloat(node.h.__text) * $scope.documentSize.height;
+            x = parseFloat(node['_stArea:x']) * $scope.documentSize.width;
+            y = parseFloat(node['_stArea:y']) * $scope.documentSize.height;
+            if (node['_stArea:w'] && node['_stArea:h']) {
+              width = parseFloat(node['_stArea:w']) * $scope.documentSize.width;
+              height = parseFloat(node['_stArea:h']) * $scope.documentSize.height;
             } else {
               width = SELECTION_SIZE_FOR_POINT;
               height = SELECTION_SIZE_FOR_POINT;
@@ -165,17 +165,9 @@
               struct.__prefix = 'rdf';
               $scope.rmd.RecommendedFrames.Bag.li.push(struct);
             } else {
-              delete struct.MinAspectRatio;
-              delete struct.MaxAspectRatio;
-              delete struct['rmd:MinAspectRatio'];
-              delete struct['rmd:MaxAspectRatio'];
               if (name === 'default') {
-                delete struct.MaxWidth;
-                delete struct['rmd:MaxWidth'];
                 $scope.rmd.CropArea = struct;
               } else if (name === 'safe') {
-                delete struct.MinWidth;
-                delete struct['rmd:MinWidth'];
                 $scope.rmd.SafeArea = struct;
               }
             }

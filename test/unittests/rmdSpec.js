@@ -40,7 +40,7 @@ describe('RMD tests', function() {
     it('uses the correct base', function() {
       expect(typeof rmdDefault.xmpmeta).toBe('object');
       expect(rmdDefault.xmpmeta.RDF.Description.MinWidth).toBe(undefined);
-      expect(rmdDefault.xmpmeta.RDF.Description.Interpolation.__text).toBe('linear');
+      expect(rmdDefault.xmpmeta.RDF.Description['_rmd:Interpolation']).toBe('linear');
       // value that gets added later.
       expect(rmdDefault.xmpmeta.RDF.Description.InstanceID).toBe(undefined);
       expect(xmp_bridge.isMockObject).toBe(true);
@@ -66,10 +66,10 @@ describe('RMD tests', function() {
         var areaValues = {"w":{"__prefix":"stArea","__text":"0.500000"},"x":{"__prefix":"stArea","__text":"0.250000"},"y":{"__prefix":"stArea","__text":"0.250000"},"h":{"__prefix":"stArea","__text":"0.500000"},"MaxAspectRatio":{"__prefix":"rmd","__text":"1.000000"},"MinAspectRatio":{"__prefix":"rmd","__text":"0.5"},"MinWidth":{"__prefix":"rmd","__text":"320"},"MaxWidth":{"__prefix":"rmd","__text":"360"},"_rdf:parseType":"Resource","__prefix":"rdf"}
         var oldAreaValues = _.clone(areaValues);
         rmd._compressAreaNode(areaValues);
-        expect(areaValues['rmd:MinWidth']).toBe(oldAreaValues.MinWidth.__text);
-        expect(areaValues['rmd:MaxWidth']).toBe(oldAreaValues.MaxWidth.__text);
-        expect(areaValues['rmd:MinAspectRatio']).toBe(oldAreaValues.MinAspectRatio.__text);
-        expect(areaValues['rmd:MaxAspectRatio']).toBe(oldAreaValues.MaxAspectRatio.__text);
+        expect(areaValues['_rmd:MinWidth']).toBe(oldAreaValues.MinWidth.__text);
+        expect(areaValues['_rmd:MaxWidth']).toBe(oldAreaValues.MaxWidth.__text);
+        expect(areaValues['_rmd:MinAspectRatio']).toBe(oldAreaValues.MinAspectRatio.__text);
+        expect(areaValues['_rmd:MaxAspectRatio']).toBe(oldAreaValues.MaxAspectRatio.__text);
         expect(areaValues.MinWidth).toBe(undefined);
         expect(areaValues.MaxWidth).toBe(undefined);
         expect(areaValues.MinAspectRatio).toBe(undefined);

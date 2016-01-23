@@ -9,23 +9,23 @@
     <button class="topcoat-icon-button--quiet" ng-click="removeFn(index)"><span class='icomatic icon'>delete</span></button>
   </div>
   <div class="crop-area-row">
-    <label class="small">x: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.x.__text" smart-float disabled /></label>
-    <label class="small">y: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.y.__text" smart-float disabled /></label>
-    <label class="small">w: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.w.__text" smart-float disabled /></label>
-    <label class="small">h: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct.h.__text" smart-float disabled /></label>
+    <label class="small">x: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_stArea:x']" smart-float disabled /></label>
+    <label class="small">y: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_stArea:y']" smart-float disabled /></label>
+    <label class="small">w: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_stArea:w']" smart-float disabled /></label>
+    <label class="small">h: <input type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_stArea:h']" smart-float disabled /></label>
   </div>
   <div class="crop-area-row">
     <label ng-class="{inactive: !isRecommended()}"  class="small stack"><span>Min. Aspect</span>
-      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['rmd:MinAspectRatio']" smart-float />
+      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_rmd:MinAspectRatio']" smart-float />
     </label>
     <label ng-class="{inactive: !isRecommended()}"  class="small stack"><span>Max. Aspect</span>
-      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['rmd:MaxAspectRatio']" smart-float />
+      <input ng-disabled="!isRecommended()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_rmd:MaxAspectRatio']" smart-float />
     </label>
     <label ng-class="{inactive: isSafeType()}"  class="small stack"><span>Min. Width</span>
-      <input ng-disabled="isSafeType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['rmd:MinWidth']" />
+      <input ng-disabled="isSafeType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_rmd:MinWidth']" />
     </label>
     <label ng-class="{inactive: isCropType()}" class="small stack"><span>Max. Width</span>
-      <input ng-disabled="isCropType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['rmd:MaxWidth']" />
+      <input ng-disabled="isCropType()" type="text" class="topcoat-text-input topcoat-text-input--small" ng-model="struct['_rmd:MaxWidth']" />
     </label>
   </div>
 

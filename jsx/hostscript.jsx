@@ -200,13 +200,13 @@ $.delegates = (function (exports) {
 
         getRawXMP: function() {
           // return accessor.getXmpPacket(target);
-          return xmp.serialize();
+          return xmp.serialize(XMPConst.SERIALIZE_USE_COMPACT_FORMAT);
         },
 
         setRawXMP: function(serialized_xmp) {
           xmp = new XMPMeta(serialized_xmp);
-          var packet = xmp.serialize(XMPConst.SERIALIZE_USE_COMPACT_FORMAT);
-          accessor.setXmpPacket(target, packet);
+          // var packet = xmp.serialize(XMPConst.SERIALIZE_USE_COMPACT_FORMAT);
+          accessor.setXmpPacket(target, serialized_xmp);
         }
       };
     };

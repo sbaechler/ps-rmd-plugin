@@ -85,23 +85,25 @@ describe('MainController Test', function(){
     // add the default crop area
     scope.addCropArea('default');
     expect(typeof scope.rmd.CropArea).toBe('object');
-    expect(scope.rmd.CropArea.x.__text).toBe('0.500000');
-    expect(scope.rmd.CropArea.x.__prefix).toBe('stArea');
-    expect(scope.rmd.CropArea.y.__prefix).toBe('stArea');
-    expect(scope.rmd.CropArea.w.__prefix).toBe('stArea');
-    expect(scope.rmd.CropArea.h.__prefix).toBe('stArea');
+    expect(scope.rmd.CropArea.x).toBe(undefined);
+    expect(scope.rmd.CropArea.y).toBe(undefined);
+    expect(scope.rmd.CropArea.w).toBe(undefined);
+    expect(scope.rmd.CropArea.h).toBe(undefined);
+    expect(scope.rmd.CropArea['_stArea:x']).toBe('0.500000');
+    expect(scope.rmd.CropArea['_stArea:y']).not.toBe(undefined);
+    expect(scope.rmd.CropArea['_stArea:w']).not.toBe(undefined);
+    expect(scope.rmd.CropArea['_stArea:h']).not.toBe(undefined);
     expect(scope.rmd.MaxWidth).toBe(undefined);
+    expect(scope.rmd['_rmd:MaxWidth']).toBe(undefined);
 
     // add a recommended area
     scope.addCropArea();
     node = scope.rmd.RecommendedFrames.Bag.li;
     expect(node.length).toBe(1);
     expect(node[0]).not.toBe(undefined);
-    expect(node[0].x.__text).toBe('0.500000');
-    expect(node[0].x.__prefix).toBe('stArea');
-    expect(node[0].y.__prefix).toBe('stArea');
-    expect(node[0].MaxWidth).toBe(undefined);
-    expect(node[0].MinWidth).toBe(undefined);
+    expect(node[0]['_stArea:x']).toBe('0.500000');
+    expect(node[0]['_rmd:MaxWidth']).toBe(undefined);
+    expect(node[0]['_rmd:MaxWidth']).toBe(undefined);
   });
 
   it('Correctly removes an area', function() {
@@ -128,21 +130,21 @@ describe('MainController Test', function(){
 
     activeArea = scope.getNodeForActiveArea();
     // safe area
-    expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea['rmd:MinWidth']).toBe(undefined);
-    expect(activeArea['rmd:MaxWidth']).toBe(undefined);
+    expect(activeArea['_stArea:x']).toBe('0.500000');
+    expect(activeArea['_rmd:MinWidth']).toBe(undefined);
+    expect(activeArea['_rmd:MaxWidth']).toBe(undefined);
 
     scope.setActiveArea('default');
     expect(scope.isAreaActive('default')).toBe(true);
     activeArea = scope.getNodeForActiveArea();
-    expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea['rmd:MinWidth']).toBe(undefined);
-    expect(activeArea['rmd:MaxWidth']).toBe(undefined);
+    expect(activeArea['_stArea:x']).toBe('0.500000');
+    expect(activeArea['_rmd:MinWidth']).toBe(undefined);
+    expect(activeArea['_rmd:MaxWidth']).toBe(undefined);
 
     scope.setActiveArea(0);
     expect(scope.isAreaActive(0)).toBe(true);
     activeArea = scope.getNodeForActiveArea();
-    expect(activeArea.x.__text).toBe('0.500000');
+    expect(activeArea['_stArea:x']).toBe('0.500000');
     expect(activeArea['rmd:MinWidth']).toBe(undefined);
     expect(activeArea['rmd:MaxWidth']).toBe(undefined);
   });
@@ -151,16 +153,16 @@ describe('MainController Test', function(){
     scope.addCropArea();
     scope.setActiveArea(0);
     activeArea = scope.getNodeForActiveArea();
-    expect(activeArea.x.__text).toBe('0.500000');
-    expect(activeArea.y.__text).toBe('0.500000');
-    expect(activeArea.w.__text).toBe('0.900000');
-    expect(activeArea.h.__text).toBe('0.900000');
+    expect(activeArea['_stArea:x']).toBe('0.500000');
+    expect(activeArea['_stArea:y']).toBe('0.500000');
+    expect(activeArea['_stArea:w']).toBe('0.900000');
+    expect(activeArea['_stArea:h']).toBe('0.900000');
 
     scope.setAreaValues(areaValues);
-    expect(activeArea.x.__text).toBe('0.455');
-    expect(activeArea.y.__text).toBe('0.4875');
-    expect(activeArea.w.__text).toBe('0.49');
-    expect(activeArea.h.__text).toBe('0.56');
+    expect(activeArea['_stArea:x']).toBe('0.455');
+    expect(activeArea['_stArea:y']).toBe('0.4875');
+    expect(activeArea['_stArea:w']).toBe('0.49');
+    expect(activeArea['_stArea:h']).toBe('0.56');
 
   });
 

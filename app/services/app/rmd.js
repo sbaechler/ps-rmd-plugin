@@ -71,8 +71,8 @@ angular.module('app')
      * @param documentSize - Object: {height, width}
      */
     this.setDocumentSize = function(documentSize) {
-      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions.w.__text = documentSize.width;
-      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions.h.__text = documentSize.height;
+      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions['_stDim:w'] = documentSize.width;
+      this.xmp.xmpmeta.RDF.Description.AppliedToDimensions['_stDim:h'] = documentSize.height;
     };
 
     this._compressAreaNodes = function(root){
@@ -89,8 +89,8 @@ angular.module('app')
       _.each(compressedNodes, function(key){
         if(typeof node[key] === 'object') {
           var details = node[key];
-          if(details.__prefix !== undefined) {
-            node[details.__prefix + ':' + key] = details.__text;
+          if(details.__prefix !== undefined && details.__text !== undefined) {
+            node['_' + details.__prefix + ':' + key] = details.__text;
           }
           delete node[key];
         }
