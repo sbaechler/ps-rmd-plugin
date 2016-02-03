@@ -35,9 +35,6 @@ angular.module('app')
               "_rmd:Crop": "all",
               "__prefix": "rmd"
             },
-            "PivotPoint": {
-              "__prefix": "rmd"
-            },
             "_rmd:Interpolation": "linear",
             "_xmlns:rmd": "http://universalimages.github.io/rmd/0.1/",
             "_xmlns:stDim": "http://ns.adobe.com/xap/1.0/sType/Dimensions#",

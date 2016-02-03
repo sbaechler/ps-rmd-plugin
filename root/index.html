@@ -53,8 +53,11 @@
         <button ng-class="{active: isAreaActive('pivot')}" class="topcoat-icon-button--quiet" ng-click="setActiveArea('pivot')">
           <span class='icomatic icon'>pencil</span>
         </button>
-        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint['_stArea:x']">
-        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint['_stArea:y']">
+        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint['_stArea:x']" ng-disabled="!rmd.PivotPoint">
+        <input type="text" class="topcoat-text-input hostElt" ng-model="rmd.PivotPoint['_stArea:y']" ng-disabled="!rmd.PivotPoint">
+        <button class="topcoat-icon-button--quiet" ng-click="removePivotPoint()" ng-show="rmd.PivotPoint">
+          <span class='icomatic icon'>delete</span>
+        </button>
       </fieldset>
 
       <fieldset>

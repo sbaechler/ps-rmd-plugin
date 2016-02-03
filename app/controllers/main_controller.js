@@ -98,6 +98,9 @@
             } else if (activeArea === 'safe') {
               return $scope.rmd.SafeArea;
             } else if (activeArea === 'pivot') {
+              if($scope.rmd.PivotPoint === undefined) {
+                $scope.rmd.PivotPoint = {__prefix: 'rmd'};
+              }
               return $scope.rmd.PivotPoint;
             } else {
               return $scope.rmd.RecommendedFrames.Bag.li[activeArea];
@@ -214,6 +217,13 @@
               }
               activeArea = area;
               $scope.setSelectionFromRmd();
+            }
+          };
+
+          $scope.removePivotPoint = function() {
+            delete $scope.rmd.PivotPoint;
+            if($scope.isAreaActive('pivot')){
+              $scope.setActiveArea(null);
             }
           };
 
