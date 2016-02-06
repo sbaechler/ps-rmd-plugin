@@ -2,7 +2,7 @@
 <ExtensionManifest Version="5.0" ExtensionBundleId="com.stellanera.UniversalImages" ExtensionBundleVersion="0.1.0"
   ExtensionBundleName="Universal Images" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <Extension Id="com.stellanera.UniversalImages" Version="0.1.0" />
+    <Extension Id="com.stellanera.UniversalImages.Marker" Version="0.1.0" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
@@ -17,7 +17,7 @@
     </RequiredRuntimeList>
   </ExecutionEnvironment>
   <DispatchInfoList>
-    <Extension Id="com.stellanera.UniversalImages">
+    <Extension Id="com.stellanera.UniversalImages.Marker">
       <DispatchInfo >
         <Resources>
           <MainPath>./root/index.html</MainPath>
@@ -37,14 +37,14 @@
               <Height>480</Height>
               <Width>340</Width>
             </Size>
-            <MinSize>
-              <Height>480</Height>
-              <Width>300</Width>
-            </MinSize>
             <MaxSize>
               <Height>640</Height>
               <Width>640</Width>
             </MaxSize>
+            <MinSize>
+              <Height>480</Height>
+              <Width>300</Width>
+            </MinSize>
           </Geometry>
           <Icons>
             <Icon Type="Normal">./icons/iconNormal.png</Icon>

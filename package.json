@@ -1,9 +1,8 @@
 {
   "name": "Universalimages",
+  "description": "Mark crop regions to make your images responsive.",
   "version": "0.1.0",
-  "dependencies": {
-    "gulp-sourcemaps": "^1.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "del": "^2.0.2",
     "fs-extra": "^0.26.2",
@@ -16,6 +15,7 @@
     "gulp-sass": "^2.1.0",
     "gulp-shell": "^0.4.0",
     "gulp-util": "^3.0.1",
+    "gulp-sourcemaps": "^1.6.0",
     "jasmine-core": "^2.4.1",
     "jshint-stylish": "^1.0.1",
     "karma": "^0.13.19",
@@ -25,5 +25,7 @@
     "phantomjs": "^1.9.19",
     "run-sequence": "^1.0.1",
     "wiredep": "^2.2.2"
-  }
+  },
+  "repository": "github.com/sbaechler/ps-rmd-plugin",
+  "license": "GPL-3.0"
 }

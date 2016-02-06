@@ -34,7 +34,10 @@ var allSrcFiles = [
     'ext/**/*',
     'jsx/**/*',
     'root/**/*',
-    'bower_components/**/*'
+    'bower_components/**/*',
+    'templates/**/*',
+    'css/**/*',
+    'icons/**/*'
   ],
   // The selfSigned certificate used to compile the extension
   certPath = path.join('./bin', 'TestCert.p12'),
@@ -44,7 +47,7 @@ var allSrcFiles = [
   binPath = path.join('./bin', 'ZXPSignCmd');
 
 env({
-  file: '.env'
+  file: '.env'  // stores secret information
 });
 
 gulp.task('hint', 'Run JSHint against your project files', function () {
@@ -90,14 +93,16 @@ gulp.task('watch', 'Build based on file changes', function () {
 });
 
 gulp.task('cert', 'Create a signing cert for your extension', shell.task([
-    InsertSpaces(binPath,
+    insertSpaces(binPath,
       '-selfSignedCert',
       'CH',
       'NA',
-      'company',
-      'Universalimages',
+      'none',
+      '"Simon Bächler"',
       '"'+process.env.TEST_CERT_PW+'"',
-      certPath)
+      certPath,
+      '-email b@chler.com'
+    )
 ]));
 
 gulp.task('build', 'Compile the bundled ZXP', function (cb) {
@@ -114,34 +119,36 @@ gulp.task('build:dist', false, function () {
 });
 
 gulp.task('build:pkgDeps', false, function () {
+  function onError(err) {
+      if(err) {
+        throw new gutil.PluginError('pkgDeps', err);
+      }
+  }
   for(var dep in pkg.dependencies) {
-    fs.copy(path.join('./node_modules/', dep), path.join('./dist', 'node_modules', dep), function (err) {
-        if(err) {
-          throw new gutil.PluginError('pkgDeps', err);
-        }
-    });
+    fs.copy(path.join('./node_modules/', dep), path.join('./dist', 'node_modules', dep),
+        onError);
   }
 });
 
 gulp.task('build:compile', false, shell.task([
-  InsertSpaces(binPath,
+  insertSpaces(binPath,
     '-sign',
     './dist',
     zxpPath,
     certPath,
-    '"'+process.env.TEST_CERT_PW+'"'
-    // '-tsa http://tsa.safecreative.org'
+    '"'+process.env.TEST_CERT_PW+'"',
+    '-tsa  http://timestamp.digicert.com'
   )
 ]));
 
-function InsertSpaces () {
+function insertSpaces () {
   var builtString = '';
   var args = Array.prototype.slice.call(arguments);
   args.forEach(function(val) {
       builtString = builtString + val + ' ';
   });
   return builtString;
-};
+}
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'scripts', 'sass']);

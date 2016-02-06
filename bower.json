@@ -6,7 +6,7 @@
   "authors": [
     "Simon Bächler"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "ignore": [
     "**/.",
     "node_modules",
@@ -14,6 +14,7 @@
     "test",
     "tests"
   ],
+  "private": true,
   "dependencies": {
     "angular": "~1.4.8",
     "topcoat": "~0.8.0",

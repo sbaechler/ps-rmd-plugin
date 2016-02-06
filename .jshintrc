@@ -10,5 +10,6 @@
   },
   "devel": true,
   "jasmine" : true,
-  "browser" : true
+  "browser" : true,
+  "node": true
 }
