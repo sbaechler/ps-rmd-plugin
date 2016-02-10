@@ -1,6 +1,6 @@
 {
   "name": "Universal Images",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Mark crop regions to make your images responsive.",
   "main": "root/index.html",
   "authors": [
