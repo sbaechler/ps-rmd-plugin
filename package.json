@@ -1,7 +1,7 @@
 {
   "name": "Universalimages",
   "description": "Mark crop regions to make your images responsive.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.7.7",

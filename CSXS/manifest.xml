@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="5.0" ExtensionBundleId="com.stellanera.UniversalImages" ExtensionBundleVersion="1.0.0"
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.stellanera.UniversalImages" ExtensionBundleVersion="1.0.1"
   ExtensionBundleName="Universal Images" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <Extension Id="com.stellanera.UniversalImages.Marker" Version="1.0.0" />
+    <Extension Id="com.stellanera.UniversalImages.Marker" Version="1.0.1" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
