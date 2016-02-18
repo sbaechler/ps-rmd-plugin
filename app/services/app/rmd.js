@@ -54,7 +54,7 @@ angular.module('app')
      * Stores the XMP metadata in the file.
      */
     this.storeXMP = function() {
-      console && console.log('Storing XMP');
+      // console && console.log('Storing XMP');
       // remove Angular.js hints
       var cleanObj = JSON.parse(angular.toJson(this.xmp));
       // removeEmptyNodes(cleanObj.xmpmeta);

@@ -6,7 +6,7 @@ angular.module('app')
   };
 })
 
-.directive('cropArea', ['lodash', function(_){
+.directive('cropArea', [function(){
 
   return {
     restrict: 'E',
