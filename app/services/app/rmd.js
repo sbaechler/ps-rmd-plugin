@@ -5,16 +5,6 @@ angular.module('app')
   // TODO: store metadata for different targets (=files)
   // var targets = {};
 
-  //function removeEmptyNodes(parent) {
-  //  _.forOwn(parent, function(value, key) {
-  //     if (value === null && typeof value === "object") {
-  //      delete parent[key];
-  //    } else if (typeof value === 'object') {
-  //      removeEmptyNodes(value);
-  //    }
-  //  });
-  //}
-
   var compressedNodes = ['MinWidth', 'MaxWidth', 'MinAspectRatio', 'MaxAspectRatio'];
 
   var RMD = function() {
