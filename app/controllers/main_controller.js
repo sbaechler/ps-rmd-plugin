@@ -57,10 +57,8 @@
 
           $scope.documentSize = {};
 
-
-          // TODO: Remove debugging exposures.
-          global._scope = $scope;
-          global.RMD = RMD;
+          //global._scope = $scope;
+          //global.RMD = RMD;
 
           // store the original image size
           csInterface.evalScript('getDocumentSize()', function (value) {
@@ -72,7 +70,7 @@
            * @param csEvent Photoshop Event.
            */
           var PhotoshopCallbackUnique = function (csEvent) {
-            // console.log('receiving Callback: ', csEvent);
+            console.log('receiving Callback: ', csEvent);
             if (typeof csEvent.data === "string") {
               var eventData = csEvent.data.replace("ver1,{", "{");
               var data = JSON.parse(eventData);
