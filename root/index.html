@@ -17,8 +17,9 @@
 <body class="hostElt" >
   <div ng-controller="MainController" id="content" class="hostFont">
     <h1>Universal Images</h1>
-    {{greeting}}
-
+    <button class="topcoat-button hostButton hostElt button-help" ng-click="openHelpLink()">
+      <span class='icomatic icon'>question</span>
+    </button>
     <div id="rmd-container" xmp-extract>
       Target name: {{targetName}}<br>
       Image Dimensions: {{documentSize.width}}x{{documentSize.height}}<br>

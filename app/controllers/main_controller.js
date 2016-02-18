@@ -2,6 +2,7 @@
   'use strict';
 
   var SELECTION_SIZE_FOR_POINT = 4;
+  var HELP_URL = 'http://sbaechler.github.io/ps-rmd-plugin/';
 
   angular.module('app')
       .controller('MainController', ['$scope', 'csInterface', 'rmdBridge',
@@ -246,6 +247,15 @@
                   $scope.$apply();
                 });
           };
+
+          $scope.openLink = function(link) {
+            window.cep.util.openURLInDefaultBrowser(link);
+          };
+
+          $scope.openHelpLink = function() {
+            $scope.openLink(HELP_URL);
+          };
+
           return this;
         }
       ]);
