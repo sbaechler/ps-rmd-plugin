@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionList>
-    <Extension Id="com.stellanera.UniversalImages">
+    <Extension Id="com.stellanera.UniversalImages.Marker">
         <HostList>
             <!-- Photoshop -->
             <Host Name="PHXS" Port="2001"/>
