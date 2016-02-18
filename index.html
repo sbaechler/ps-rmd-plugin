@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+	<title>Universal Images Metadata Plugin</title>
+
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">Universal Images Metadata Plugin</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#universal-images-metadata-plugin">Universal Images Metadata Plugin</a></li>
+        
+            <li><a href="#installation">Installation</a></li>
+        
+            <li><a href="#usage">Usage</a></li>
+        
+            <li><a href="#issues">Issues</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="universal-images-metadata-plugin">Universal Images Metadata Plugin</h1>
+<p>A responsive metadata plugin for Adobe Photoshop.</p>
+<p>This plugin provides a user interface for adding responsive rules to any image using metadata.</p>
+<p>It supports the <a href="https://github.com/universalimages/rmd">RMD standard</a> 
+promoted by the <a href="https://www.w3.org/community/universalimages/">W3C Universal Image Community Group</a>.</p>
+<h2 id="installation">Installation</h2>
+<p>The plugin only supports Photoshop CC and is therefore best installed via the Creative Cloud.</p>
+<p>You can also download the binary build from the 
+<a href="https://github.com/sbaechler/ps-rmd-plugin/releases">Github release page</a> 
+and install it yourself using <a href="http://zxpinstaller.com/">ZXPInstaller</a>.</p>
+<p>You might also want to install the <a href="https://github.com/universalimages/rmd-extension">Metadata UI Extension</a>.
+This allows you to quickly edit and the XMP metadata using the 'File info' dialog.</p>
+<h2 id="usage">Usage</h2>
+<p><img alt="Interface" src="./images/interface.png" /></p>
+<h3 id="units">Units</h3>
+<p>All pixel units specified within the context of this plugin are resolution independent CSS pixels and
+defined by a viewing angle and not an absolute distance.
+The <a href="https://www.w3.org/TR/CSS2/syndata.html#length-units">reference pixel</a> is about 0.26mm (1/96 inch) on
+a device held at arm's length. The screen of the Apple iPhone 6 has a width of 375 pixels in portrait mode. 
+The iPad has 768 x 1024 pixels.</p>
+<p>The main panel is split up into five parts. </p>
+<h3 id="allowed-derivates">Allowed Derivates</h3>
+<p>This part is for the legal section. The author of the work can chose between three
+rules that define how the image can be cropped when it is optimized for the web:</p>
+<ul>
+<li>None: The image must not be modified at all. If the 'Crop Area' is defined, it must be respected.
+  Only resizing is allowed.</li>
+<li>Visibililty Only: Cropping is only allowed to make sure the important parts stay visible even on small devices.
+  Editorial integrity must not be compromised.</li>
+<li>All: Any cropping is allowed.</li>
+</ul>
+<h3 id="crop-areas">Crop Areas</h3>
+<p>There are three kind of crop areas. Each have their own meaning and constrains.
+To define an area, activate it by clicking on its title. The box to the left of the title becomes active.
+A selection appears on the image, representing the current area. Change the area by drawing a 
+new selection while an area is active.</p>
+<p>A click on the trashcan icon removes the area from the list.</p>
+<h4 id="crop-area">Crop Area</h4>
+<p>This is the default crop area. A web server or other presentation software crops an image here by default.
+This adds the possibility of adding recommended regions for certain aspect ratios that 
+extend the default presentation of an image. There is one property 'Min. Width' which needs
+to be set if the interpolation is set to 'linear'. This property defines the width that 
+cropping should start. If it is set to 400, then any target with of less than 400 pixels 
+is cropped.</p>
+<h4 id="safe-area">Safe Area</h4>
+<p>This area contains the relevant parts of an image. It is never cropped into.
+It has one property 'Max. Width' that must be set if the interpolation is 'linear'.
+If the target width is smaller than this value, then the image is cropped to the safe area
+and resized to the target size.</p>
+<h4 id="custom-area">Custom Area</h4>
+<p>There can be multiple custom areas. They are only considered if the interpolation is set to 'step'.
+The area which best matches a custom area is used for cropping. Every custom area can have the 
+following filter attributes:</p>
+<ul>
+<li>Min. Aspect: The minimal aspect ratio of the target image so the area is considered. This
+  must be a real number. 1.0 means a square image. A number smaller than 1 is a portrait aspect ratio.</li>
+<li>Max. Aspect: The maximum aspect ratio of the target image so that the area is considered.</li>
+<li>Min Width: The minimum width of the target image for the area to be considered.</li>
+<li>Max Width: The maximum width of the target image for the area to be considered.</li>
+</ul>
+<h3 id="pivot-point">Pivot Point</h3>
+<p>This is the reference point for the intermediate crops. The distance ratio between the border and
+this point is preserved.</p>
+<p>If the pivot point is not defined the center of the crop area is used as a fallback. If that is 
+not defined, then the center of the image is used.</p>
+<p>To mark the center point, a small selection has to be made in the image. The center of the selection
+is used as the center point. This is due to a limitation of the plugin system in Photoshop.</p>
+<h3 id="interpolation">Interpolation</h3>
+<p>This defines the way intermediate sizes are calculated.</p>
+<ul>
+<li>Linear: Intermediate sizes are calculated.</li>
+<li>Step: Only the defined areas are used.</li>
+</ul>
+<h3 id="file">File</h3>
+<ul>
+<li>Commit: Add the metadata to the image. The image is not saved.</li>
+<li>Revert: Read the metadata from the image file and revert all changes.</li>
+</ul>
+<h2 id="issues">Issues</h2>
+<p>Bugs and issues can be reported <a href="https://github.com/sbaechler/ps-rmd-plugin/issues">here</a>.</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.15.2
+Build Date UTC : 2016-02-18 16:26:54.432775
+-->

@@ -1,0 +1,74 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Universal Images Metadata Plugin\n\n\nA responsive metadata plugin for Adobe Photoshop.\n\n\nThis plugin provides a user interface for adding responsive rules to any image using metadata.\n\n\nIt supports the \nRMD standard\n \npromoted by the \nW3C Universal Image Community Group\n.\n\n\nInstallation\n\n\nThe plugin only supports Photoshop CC and is therefore best installed via the Creative Cloud.\n\n\nYou can also download the binary build from the \n\nGithub release page\n \nand install it yourself using \nZXPInstaller\n.\n\n\nYou might also want to install the \nMetadata UI Extension\n.\nThis allows you to quickly edit and the XMP metadata using the 'File info' dialog.\n\n\nUsage\n\n\n\n\nUnits\n\n\nAll pixel units specified within the context of this plugin are resolution independent CSS pixels and\ndefined by a viewing angle and not an absolute distance.\nThe \nreference pixel\n is about 0.26mm (1/96 inch) on\na device held at arm's length. The screen of the Apple iPhone 6 has a width of 375 pixels in portrait mode. \nThe iPad has 768 x 1024 pixels.\n\n\nThe main panel is split up into five parts. \n\n\nAllowed Derivates\n\n\nThis part is for the legal section. The author of the work can chose between three\nrules that define how the image can be cropped when it is optimized for the web:\n\n\n\n\nNone: The image must not be modified at all. If the 'Crop Area' is defined, it must be respected.\n  Only resizing is allowed.\n\n\nVisibililty Only: Cropping is only allowed to make sure the important parts stay visible even on small devices.\n  Editorial integrity must not be compromised.\n\n\nAll: Any cropping is allowed.\n\n\n\n\nCrop Areas\n\n\nThere are three kind of crop areas. Each have their own meaning and constrains.\nTo define an area, activate it by clicking on its title. The box to the left of the title becomes active.\nA selection appears on the image, representing the current area. Change the area by drawing a \nnew selection while an area is active.\n\n\nA click on the trashcan icon removes the area from the list.\n\n\nCrop Area\n\n\nThis is the default crop area. A web server or other presentation software crops an image here by default.\nThis adds the possibility of adding recommended regions for certain aspect ratios that \nextend the default presentation of an image. There is one property 'Min. Width' which needs\nto be set if the interpolation is set to 'linear'. This property defines the width that \ncropping should start. If it is set to 400, then any target with of less than 400 pixels \nis cropped.\n\n\nSafe Area\n\n\nThis area contains the relevant parts of an image. It is never cropped into.\nIt has one property 'Max. Width' that must be set if the interpolation is 'linear'.\nIf the target width is smaller than this value, then the image is cropped to the safe area\nand resized to the target size.\n\n\nCustom Area\n\n\nThere can be multiple custom areas. They are only considered if the interpolation is set to 'step'.\nThe area which best matches a custom area is used for cropping. Every custom area can have the \nfollowing filter attributes:\n\n\n\n\nMin. Aspect: The minimal aspect ratio of the target image so the area is considered. This\n  must be a real number. 1.0 means a square image. A number smaller than 1 is a portrait aspect ratio.\n\n\nMax. Aspect: The maximum aspect ratio of the target image so that the area is considered.\n\n\nMin Width: The minimum width of the target image for the area to be considered.\n\n\nMax Width: The maximum width of the target image for the area to be considered.\n\n\n\n\nPivot Point\n\n\nThis is the reference point for the intermediate crops. The distance ratio between the border and\nthis point is preserved.\n\n\nIf the pivot point is not defined the center of the crop area is used as a fallback. If that is \nnot defined, then the center of the image is used.\n\n\nTo mark the center point, a small selection has to be made in the image. The center of the selection\nis used as the center point. This is due to a limitation of the plugin system in Photoshop.\n\n\nInterpolation\n\n\nThis defines the way intermediate sizes are calculated.\n\n\n\n\nLinear: Intermediate sizes are calculated.\n\n\nStep: Only the defined areas are used.\n\n\n\n\nFile\n\n\n\n\nCommit: Add the metadata to the image. The image is not saved.\n\n\nRevert: Read the metadata from the image file and revert all changes.\n\n\n\n\nIssues\n\n\nBugs and issues can be reported \nhere\n.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#universal-images-metadata-plugin", 
+            "text": "A responsive metadata plugin for Adobe Photoshop.  This plugin provides a user interface for adding responsive rules to any image using metadata.  It supports the  RMD standard  \npromoted by the  W3C Universal Image Community Group .", 
+            "title": "Universal Images Metadata Plugin"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "The plugin only supports Photoshop CC and is therefore best installed via the Creative Cloud.  You can also download the binary build from the  Github release page  \nand install it yourself using  ZXPInstaller .  You might also want to install the  Metadata UI Extension .\nThis allows you to quickly edit and the XMP metadata using the 'File info' dialog.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/#units", 
+            "text": "All pixel units specified within the context of this plugin are resolution independent CSS pixels and\ndefined by a viewing angle and not an absolute distance.\nThe  reference pixel  is about 0.26mm (1/96 inch) on\na device held at arm's length. The screen of the Apple iPhone 6 has a width of 375 pixels in portrait mode. \nThe iPad has 768 x 1024 pixels.  The main panel is split up into five parts.", 
+            "title": "Units"
+        }, 
+        {
+            "location": "/#allowed-derivates", 
+            "text": "This part is for the legal section. The author of the work can chose between three\nrules that define how the image can be cropped when it is optimized for the web:   None: The image must not be modified at all. If the 'Crop Area' is defined, it must be respected.\n  Only resizing is allowed.  Visibililty Only: Cropping is only allowed to make sure the important parts stay visible even on small devices.\n  Editorial integrity must not be compromised.  All: Any cropping is allowed.", 
+            "title": "Allowed Derivates"
+        }, 
+        {
+            "location": "/#crop-areas", 
+            "text": "There are three kind of crop areas. Each have their own meaning and constrains.\nTo define an area, activate it by clicking on its title. The box to the left of the title becomes active.\nA selection appears on the image, representing the current area. Change the area by drawing a \nnew selection while an area is active.  A click on the trashcan icon removes the area from the list.", 
+            "title": "Crop Areas"
+        }, 
+        {
+            "location": "/#crop-area", 
+            "text": "This is the default crop area. A web server or other presentation software crops an image here by default.\nThis adds the possibility of adding recommended regions for certain aspect ratios that \nextend the default presentation of an image. There is one property 'Min. Width' which needs\nto be set if the interpolation is set to 'linear'. This property defines the width that \ncropping should start. If it is set to 400, then any target with of less than 400 pixels \nis cropped.", 
+            "title": "Crop Area"
+        }, 
+        {
+            "location": "/#safe-area", 
+            "text": "This area contains the relevant parts of an image. It is never cropped into.\nIt has one property 'Max. Width' that must be set if the interpolation is 'linear'.\nIf the target width is smaller than this value, then the image is cropped to the safe area\nand resized to the target size.", 
+            "title": "Safe Area"
+        }, 
+        {
+            "location": "/#custom-area", 
+            "text": "There can be multiple custom areas. They are only considered if the interpolation is set to 'step'.\nThe area which best matches a custom area is used for cropping. Every custom area can have the \nfollowing filter attributes:   Min. Aspect: The minimal aspect ratio of the target image so the area is considered. This\n  must be a real number. 1.0 means a square image. A number smaller than 1 is a portrait aspect ratio.  Max. Aspect: The maximum aspect ratio of the target image so that the area is considered.  Min Width: The minimum width of the target image for the area to be considered.  Max Width: The maximum width of the target image for the area to be considered.", 
+            "title": "Custom Area"
+        }, 
+        {
+            "location": "/#pivot-point", 
+            "text": "This is the reference point for the intermediate crops. The distance ratio between the border and\nthis point is preserved.  If the pivot point is not defined the center of the crop area is used as a fallback. If that is \nnot defined, then the center of the image is used.  To mark the center point, a small selection has to be made in the image. The center of the selection\nis used as the center point. This is due to a limitation of the plugin system in Photoshop.", 
+            "title": "Pivot Point"
+        }, 
+        {
+            "location": "/#interpolation", 
+            "text": "This defines the way intermediate sizes are calculated.   Linear: Intermediate sizes are calculated.  Step: Only the defined areas are used.", 
+            "title": "Interpolation"
+        }, 
+        {
+            "location": "/#file", 
+            "text": "Commit: Add the metadata to the image. The image is not saved.  Revert: Read the metadata from the image file and revert all changes.", 
+            "title": "File"
+        }, 
+        {
+            "location": "/#issues", 
+            "text": "Bugs and issues can be reported  here .", 
+            "title": "Issues"
+        }
+    ]
+}
