@@ -1,4 +1,4 @@
-(function(global) {
+(function() {
   'use strict';
 
   var SELECTION_SIZE_FOR_POINT = 4;
@@ -15,16 +15,16 @@
           var listenTo = [psEvent.set, psEvent.select];
 
           // Tell Photoshop to not unload us when closed
-          function Persistent(inOn) {
-            var event;
-            if (inOn) {
-              event = new CSEvent("com.adobe.PhotoshopPersistent", "APPLICATION");
-            } else {
-              event = new CSEvent("com.adobe.PhotoshopUnPersistent", "APPLICATION");
-            }
-            event.extensionId = gExtensionID;
-            csInterface.dispatchEvent(event);
-          }
+          //function Persistent(inOn) {
+          //  var event;
+          //  if (inOn) {
+          //    event = new CSEvent("com.adobe.PhotoshopPersistent", "APPLICATION");
+          //  } else {
+          //    event = new CSEvent("com.adobe.PhotoshopUnPersistent", "APPLICATION");
+          //  }
+          //  event.extensionId = gExtensionID;
+          //  csInterface.dispatchEvent(event);
+          //}
 
           // Tell Photoshop the events we want to listen for
           var _register = function (inOn, inEvents) {
@@ -70,12 +70,13 @@
            * @param csEvent Photoshop Event.
            */
           var PhotoshopCallbackUnique = function (csEvent) {
-            console.log('receiving Callback: ', csEvent);
+            // console.log('receiving Callback: ', csEvent);
             if (typeof csEvent.data === "string") {
               var eventData = csEvent.data.replace("ver1,{", "{");
               var data = JSON.parse(eventData);
-              if (data.eventData.null._property === 'selection' && data.eventID === psEvent.set
-                  && data.eventData.to._obj === 'rectangle' && activeArea) {
+              if (data.eventData.null._property === 'selection' &&
+                  data.eventID === psEvent.set &&
+                  data.eventData.to._obj === 'rectangle' && activeArea) {
                 if (data.eventData.to.top._unit === 'pixelsUnit') {
                   $scope.setAreaValues(data.eventData.to);
                 } else {
@@ -230,11 +231,12 @@
             csInterface.evalScript('getDocumentSize()', function (value) {
               $scope.documentSize = JSON.parse(value);
               RMD.setDocumentSize($scope.documentSize);
-              RMD.storeXMP().then(function (response) {
-                if (parseInt(response) === 0) {
-                  console && console.log('XMP updated');
-                }
-              });
+              RMD.storeXMP();
+              //.then(function (response) {
+              //  if (parseInt(response) === 0) {
+              //    console && console.log('XMP updated');
+              //  }
+              //});
             });
           };
 
@@ -257,4 +259,4 @@
           return this;
         }
       ]);
-}(window));
+}());

@@ -1,4 +1,4 @@
-(function(global) {
+(function() {
   themeManager.init();
 
   angular.module('app', ['ngLodash', 'xml'])

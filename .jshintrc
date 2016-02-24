@@ -6,7 +6,10 @@
     "Promise": true,
     "module": true,
     "inject": true,
-    "themeManager": true
+    "themeManager": true,
+    "CSInterface": true,
+    "CSEvent": true,
+    "XMPBridge": true
   },
   "devel": true,
   "jasmine" : true,

@@ -66,8 +66,8 @@ angular.module('app')
     };
 
     this._compressAreaNodes = function(root){
-      root.CropArea && this._compressAreaNode(root.CropArea);
-      root.SafeArea && this._compressAreaNode(root.SafeArea);
+      if(root.CropArea){this._compressAreaNode(root.CropArea);}
+      if(root.SafeArea){this._compressAreaNode(root.SafeArea);}
       if(root.RecommendedFrames && root.RecommendedFrames.Bag) {
         _.each(root.RecommendedFrames.Bag.li, function(node){
           this._compressAreaNode(node);
