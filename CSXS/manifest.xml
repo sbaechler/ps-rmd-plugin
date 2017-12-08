@@ -2,12 +2,12 @@
 <ExtensionManifest Version="5.0" ExtensionBundleId="com.stellanera.UniversalImages" ExtensionBundleVersion="1.0.1"
   ExtensionBundleName="Universal Images" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <Extension Id="com.stellanera.UniversalImages.Marker" Version="1.0.1" />
+    <Extension Id="com.stellanera.UniversalImages.Marker" Version="1.0.2" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
-      <Host Name="PHXS" Version="[16.0,16.9]" />
-      <Host Name="PHSP" Version="[16.0,16.9]" />
+      <Host Name="PHXS" Version="[18.0,20.9]" />
+      <Host Name="PHSP" Version="[18.0,20.9]" />
     </HostList>
     <LocaleList>
       <Locale Code="All" />
@@ -52,7 +52,7 @@
             <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
             <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
             <Icon Type="DarkRollOver">./icons/iconDarkHover.png</Icon>
-          </Icons>		
+          </Icons>
         </UI>
       </DispatchInfo>
     </Extension>
