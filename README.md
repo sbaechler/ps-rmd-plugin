@@ -7,6 +7,9 @@ promoted by the [W3C Universal Image Community Group](https://www.w3.org/communi
 
 [![Build Status](https://travis-ci.org/sbaechler/ps-rmd-plugin.svg?branch=master)](https://travis-ci.org/sbaechler/ps-rmd-plugin)
 
+Use the [rmd-extension](https://github.com/universalimages/rmd-extension) to view the
+generated metadata in the file info dialog.
+
 ## Installation
 
 The plugin only supports Photoshop CC and is therefore best installed via the Creative Cloud.
